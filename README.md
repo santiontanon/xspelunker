@@ -53,6 +53,7 @@ Keyboard:
 * Pick up items         - crouch then space/trigger A
 * Drop items            - select them, then crouch plus space/trigger A
 * Throw bombs/ropes/etc.- select them, hold space, then point in the direction you want to throw, and release space
+* Push boulders         - just keep walking onto them
 * Pause                 - P
 
 In the title screen:
