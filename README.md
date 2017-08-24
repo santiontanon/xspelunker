@@ -65,7 +65,18 @@ Each time you start a new level, it will have to be generated. Wait until the "W
 
 ## Items
 
-[to do]
+* ![Machete](https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/item-machete.png): This is the main weapon of Xavier, use it by pressing Space/Trigger A. It cannot be dropped, and also, it cannot be used when grabbing a rope or when swimming.
+* ![Bomb](https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/item-bomb.png): use it to either destroy a wall if you need to make a new path, or to kill enemies. You can either drop it (crouch plus Space/Trigger A), or throw it (hold Space/Trigger A, then point the direction to throw and then release Space/Trigger A).
+* ![Rope](https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/item-rope.png): can be thrown (hold Space/Trigger A, then point the direction to throw and then release Space/Trigger A), and if it hits a ceiling, it'll get attached and drop, so you can climb it.
+* ![Stone](https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/item-stone.png): can be thrown and used as a mid-range weapon. To throw hold Space/Trigger A, then point the direction to throw and then release Space/Trigger A.
+* ![Shield](https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/item-shield.png): can deflect bullets/stones thrown at you. To use it just stay still, and Xavier will use it automatically (no need to select it). But if you are walking/jumping/attacking/climbing/etc. Xavier will not have enough reflexes to use it!
+* ![Arrow](https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/item-arrow.png): can be thrown and used as a mid-range weapon. To throw hold Space/Trigger A, then point the direction to throw and then release Space/Trigger A. But it is better used in combination with a bow, which can throw arrows at greater distances!
+* ![Bow](https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/item-bow.png): can be used to throw arrows at great distances. To shoot, select the bow, then hold Space/Trigger A, then point the direction to throw and then release Space/Trigger A.
+* ![Boots](https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/item-boots.png): increase jumping height.
+* ![Diving Mask](https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/item-mask.png): allow Xavier to go under water without losing health.
+* ![Idol](https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/item-idol.png): it has no obvious use. But it's very heavy!
+* ![Phaser](https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/item-phaser.png): the ultimate weapon! it never runs out of bullets (it's quite rare though and can only be found in later levels). To use it select the phaser, then hold Space/Trigger A, then point the direction to shoot and then release Space/Trigger A.
+* ![Antigravity Belt](https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/item-belt.png): slows down falls, letting Xavier fall from arbitrary heights without being hurt.
 
 
 ## Compatibility
