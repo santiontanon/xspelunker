@@ -1,7 +1,5 @@
 XSpelunker (MSX) by Santiago Ontañón Villar
 
-[insert here a cover image]
-
 Download latest compiled ROMs (v1.0) from: [to be updated]
 
 You will need an MSX emulator to play the game on a PC, for example OpenMSX: http://openmsx.org
@@ -18,7 +16,12 @@ Being a game inspired by Spelunky, the game levels are procedurally generated. S
 
 Screenshots (of version 1.0):
 
-[insert screenshots]
+<img src="https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/xspelunker-title.png" alt="title" width="400"/>
+<img src="https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/xspelunker-ingame1.png" alt="in game 1" width="400"/>
+
+<img src="https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/xspelunker-ingame2.png" alt="in game 2" width="400"/>
+<img src="https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/xspelunker-ingame3.png" alt="in game 3" width="400"/>
+
 
 You can see a video of the game at: [insert video here]
 
