@@ -33,6 +33,8 @@ Pay special attention to:
 * Time: time is of essence to Xavier's mission. So, you will only have 3 minutes to complete each level. If time runs out in any level, the game will be over. 3 minutes should be more than enough to complete any level though.
 * Inventory: At the start of the game Xavier starts with his trusty machete, some bombs and some climbing ropes. You can use those items by selecting them (see the controls section below). Also, remember that you can only carry a limited amount of items, and that you can drop items if you don't want them.
 * Some times you will come across doors that can be open by stepping on a button. If you want to keep the door open, you will have to drag/put some heavy item onto the button.
+* Xavier cannot fall from an arbitrary height, so be careful!
+* If you are near the edge of the screen and want to see what's beyond, just crouch. Each time you crouch, the game will center the screen on Xavier, letting you see what is around.
 * Keep a healthy supply of bombs and ropes around: in the earlier stages of the game, all the levels are guaranteed to be solveable without requiring the use of bombs and ropes. But as the game progresses there is a small chance that that is not the case. So, you might need to rely on ropes or bombs (or even on some rarely found items such as the diving mask) to be able to complete levels. 
 
 
