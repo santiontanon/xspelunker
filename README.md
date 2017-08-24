@@ -7,7 +7,7 @@ You will need an MSX emulator to play the game on a PC, for example OpenMSX: htt
 
 ## Introduction
 
-XSpelunker waS heavily inspired by the genious Spelunky game (http://www.spelunkyworld.com), which I highly recommend. Of course, XSpelunker being an 8bit version running on MSX1 hardware, it is a much more limited game, but I've tried to keep the core mechanics of the original game while making it significantly different, as for creating a new game experience.
+XSpelunker waS heavily inspired by Spelunky (http://www.spelunkyworld.com), which is simply genious, and also by other classic games such as Livingstone Supongo (https://es.wikipedia.org/wiki/Livingstone_supongo). Of course, XSpelunker, being an 8bit version running on MSX1 hardware, it is a much more limited game than Spelunky, but I've tried to keep the core mechanics of the original game while making it significantly different, in order to create a different game experience.
 
 Being a game inspired by Spelunky, the game levels are procedurally generated. So, each time you play, you will have to face different challenges, and might encounter different subsets of equipment. Make sure you collect as much equipment as you can in order to face the later stages of the game where difficulty grows rapidly, and you might need to use larger amounts of items to complete the levels.
 
