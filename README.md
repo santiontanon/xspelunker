@@ -21,7 +21,7 @@ Screenshots (of version 1.0):
 <img src="https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/xspelunker-ingame2.png" alt="in game 2" width="400"/> <img src="https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/instructions/xspelunker-ingame3.png" alt="in game 3" width="400"/>
 
 
-You can see a video of the game at: [insert video here]
+You can see a video of the game at: https://www.youtube.com/watch?v=OaTt0T8O0N0
 
 In XSpelunker you play the role of Michael S. Xavier, an explorer who adventures into the Maya territory in Yucatan to investigate some mysterious Mayan ruins. Along the way, our hero will have to overcome countless traps, beasts and other enemies that will try to put an early end to his expedition. 
 
