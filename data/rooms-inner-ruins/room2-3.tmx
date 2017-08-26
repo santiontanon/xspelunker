@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="8" tileheight="8" nextobjectid="2">
+ <tileset firstgid="1" name="tiles-inner-ruins" tilewidth="8" tileheight="8" tilecount="256" columns="16">
+  <image source="tiles-inner-ruins.png" width="128" height="128"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="16" height="16">
+  <data encoding="csv">
+150,150,150,150,150,150,150,150,150,150,150,150,150,150,150,150,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,10,11,1,1,1,21,1,1,161,161,161,161,161,161,
+1,1,1,1,1,1,1,22,1,1,1,1,161,161,161,161,
+1,1,1,1,1,1,1,1,1,1,1,1,1,161,161,161,
+1,1,1,1,1,1,1,1,1,1,1,1,1,198,199,200,
+1,1,1,1,1,1,1,1,1,137,138,139,138,214,215,216,
+1,1,1,1,1,1,1,1,1,1,1,1,1,230,231,232,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,251,252,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,255,256,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,249,250,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,249,250,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,253,254,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,251,252,
+150,150,1,1,1,1,150,150,150,150,1,1,1,1,150,150,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+</data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="1" name="pcg_any_inner_ruins" x="88" y="32" width="16" height="16"/>
+ </objectgroup>
+</map>

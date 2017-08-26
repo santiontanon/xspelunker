@@ -1,0 +1,1 @@
+java -jar java/glass-0.5.jar src/spelunk-main.asm spelunk-en.rom spelunk-en.sym
