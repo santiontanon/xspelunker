@@ -95,6 +95,9 @@ SFX_watersplash:
   db 10,#0d    ;; volume
   db MUSIC_CMD_SKIP
   db MUSIC_CMD_SKIP
+SFX_watersplash_soft:
+  db  7,#9c    ;; noise in channel C, and tone in channels B and A
+  db  6,#04    ;; noise frequency
   db 10,#0b    ;; volume
   db MUSIC_CMD_SKIP
   db MUSIC_CMD_SKIP

@@ -393,7 +393,30 @@ updateEnemy_piranha_reset:
 
 updateEnemy_piranha_splash:
     push af
+
+    ; if Piranhas are far, play softwre effect:
+    ld a,(player_y)
+    ld b,(ix+4)
+    sub b
+    jp p,updateEnemy_piranha_splash_positive1
+    neg
+updateEnemy_piranha_splash_positive1:
+    ld b,a
+    ld a,(player_x)
+    ld c,(ix+6)
+    sub c
+    jp p,updateEnemy_piranha_splash_positive2
+    neg
+updateEnemy_piranha_splash_positive2:
+    add a,b
+    cp 16
+    jp m,updateEnemy_piranha_splash_loud
+
+    ld hl,SFX_watersplash_soft
+    jr updateEnemy_piranha_splash_after_sfx
+updateEnemy_piranha_splash_loud:
     ld hl,SFX_watersplash
+updateEnemy_piranha_splash_after_sfx:
     call playSFX
 
     call spawnNewEnemy
