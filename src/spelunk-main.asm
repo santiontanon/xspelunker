@@ -195,10 +195,10 @@ fallYOffsetTable_belt:
 fallYOffsetTable_beltEnd:
 
 jumpYOffsetTable:
-    db 4,4,4,4,3,3,3,2,2,2,1,1,1,0,0,0,0        ; 34 total jump height
+    db 4,4,4,4,3,3,3,3,2,2,2,1,1,1,0,0,0,0        ; 37 total jump height
 jumpYOffsetTableEnd:
 jumpYOffsetTable_boots:
-    db 4,4,4,4,4,4,4,3,3,3,3,2,2,2,2,1,1,1,0,0,0,0        ; 50 total jump height
+    db 4,4,4,4,4,4,4,3,3,3,3,3,2,2,2,2,1,1,1,0,0,0,0        ; 53 total jump height
 jumpYOffsetTable_bootsEnd:
 hurtYOffsetTable:
     db 0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,2,3,3,3,4
