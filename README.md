@@ -50,7 +50,7 @@ Keyboard:
 * Climb up/down         - up/down
 * Grab a rope           - hold up when in the air
 * Jump when on a rope   - up twice
-* Drop when on a vine   - left or right twice
+* Drop when on a rope   - left or right twice
 * Change selected item  - M/trigger B
 * Attack with machete   - space/trigger A
 * Pick up items         - crouch then space/trigger A
