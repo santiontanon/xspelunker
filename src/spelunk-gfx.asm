@@ -71,7 +71,7 @@ clearScreenLeftToRightLoop:
 ;-----------------------------------------------
 ; decompresses patterns patch to the VDP:
 ; input: the pattern patch to decompress are in "HL"
-; requirements: this function requires buffer and buffer2 to be empty
+; requirements: this function requires buffer and buffer3 to be empty
 decompressPatternPatchToVDP:
     push hl
 
@@ -86,15 +86,15 @@ decompressPatternPatchToVDP:
     pop bc
     call LDIRMV
 
-    ; 2) decompress the patch into buffer2
+    ; 2) decompress the patch into buffer3
     pop hl
-    ld de,buffer2
+    ld de,buffer3
     call pletter_unpack
 
     ; 3) apply the patch
-    ld a,(buffer2)
+    ld a,(buffer3)
     ld b,a
-    ld de,buffer2+1
+    ld de,buffer3+1
 decompressPatternPatchToVDP_loop:
     push bc
 

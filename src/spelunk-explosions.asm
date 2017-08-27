@@ -178,7 +178,7 @@ updateExplosionAfter_continue:
 ;-----------------------------------------------
 ; destroys the surrounding tiles of a bomb
 bombExplosion:
-    ld hl,SFX_explosion
+    ld hl,decompressed_sfx + SFX_explosion
     call playSFX
 
     call removeAllItems

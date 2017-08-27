@@ -23,7 +23,6 @@ state_interlevel:
   jp z,state_ending
 
 state_interlevel_done_with_letter:
-  ; since the pattern patch functions require buffer2 (the music buffer), we need to stop the music first:
   call StopPlayingMusic
 
   ld hl,patterns_jungle_pletter
@@ -90,6 +89,11 @@ state_interlevel_level_definition_pointer_loop:
   jr nz,state_interlevel_level_definition_pointer_loop
 state_interlevel_level_definition_pointer_found:
   call generateMapFromLevelSpecification
+
+  ; now that we are done with buffer3, we can decompress the player sprites:
+  ld hl,playersprites_pletter
+  ld de,player_sprites
+  call pletter_unpack
 
   xor a
   ld hl,NAMTBL2+32*12+(32 - (interlevel_text2_end - interlevel_text2))/2

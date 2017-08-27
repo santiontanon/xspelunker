@@ -417,7 +417,7 @@ playerPickupItem_remove_from_map:
 
     call updateHUDItems
 
-    ld hl,SFX_item_pickup
+    ld hl,decompressed_sfx + SFX_item_pickup
     call playSFX
 
 playerPickupItem_no_space_on_inventory:
@@ -573,7 +573,7 @@ playerHit:
     ld hl,player_health
     call decreaseHLIfNotZero
     call updateHUDhealth
-    ld hl,SFX_playerhit
+    ld hl,decompressed_sfx + SFX_playerhit
     call playSFX
 
     ld a,PLAYER_INMUNITY_TIME
@@ -949,7 +949,7 @@ playerUpdate_jumping_trigger_machete:
     call playerSpriteChange_machete
     ld a,MACHETE_TIME
     ld (player_machete_timer),a
-    ld hl,SFX_sword_swing
+    ld hl,decompressed_sfx + SFX_sword_swing
     call playSFX
     jp checkIfWeHitAnEnemyWithTheMachete    
 
@@ -1091,7 +1091,7 @@ playerUpdate_swimming_up_pressed:
     call isPlayerOnWater
     ret nz
     call playerStateChange_jump
-    ld hl,SFX_watersplash
+    ld hl,decompressed_sfx + SFX_watersplash
     jp playSFX   
 playerUpdate_swimming_change_to_idle_if_still_swimming:
     ld a,(player_state)
@@ -1461,7 +1461,7 @@ playerUpdate_beinghurt_safe:
     jp z,playerStateChange_dead
     ld a,PLAYER_INMUNITY_TIME
     ld (player_inmune_timer),a
-    ld hl,SFX_playerhit
+    ld hl,decompressed_sfx + SFX_playerhit
     jp playSFX
 
 
@@ -1718,7 +1718,7 @@ playerStateChange_jumpRight_withInertia:
     ld a,1
     ld (player_jump_x_inertia),a
 playerStateChange_jumpRight:
-    ld hl,SFX_jump
+    ld hl,decompressed_sfx + SFX_jump
     call playSFX
     ld a,PLAYER_STATE_JUMPING_RIGHT
     ld (player_state),a
@@ -1733,7 +1733,7 @@ playerStateChange_jumpLeft_withInertia:
     ld a,-1
     ld (player_jump_x_inertia),a
 playerStateChange_jumpLeft:
-    ld hl,SFX_jump
+    ld hl,decompressed_sfx + SFX_jump
     call playSFX
     ld a,PLAYER_STATE_JUMPING_LEFT
     ld (player_state),a
@@ -1764,7 +1764,7 @@ playerStateChange_jumpRight_from_vine:
     ld de,player_sprites+5*64
     call loadFirstPlayerSpriteToVDP
     call playerUpdate_set_sprite1
-    ld hl,SFX_jump
+    ld hl,decompressed_sfx + SFX_jump
     jp playSFX
 
 playerStateChange_jumpLeft_withInertia_from_vine:
@@ -1780,7 +1780,7 @@ playerStateChange_jumpLeft_from_vine:
     ld de,player_sprites+12*64
     call loadFirstPlayerSpriteToVDP
     call playerUpdate_set_sprite1
-    ld hl,SFX_jump
+    ld hl,decompressed_sfx + SFX_jump
     jp playSFX
 
 
@@ -1854,7 +1854,7 @@ playerStateChange_swimming_no_splash:
 
 playerStateChange_swimming_right:
     call playerStateChange_clearMachete
-    ld hl,SFX_watersplash
+    ld hl,decompressed_sfx + SFX_watersplash
     call playSFX    
     xor a
     ld (player_jump_x_inertia),a
@@ -1870,7 +1870,7 @@ playerStateChange_swimming_right_noreset:
 
 playerStateChange_swimming_left:
     call playerStateChange_clearMachete
-    ld hl,SFX_watersplash
+    ld hl,decompressed_sfx + SFX_watersplash
     call playSFX    
     xor a
     ld (player_jump_x_inertia),a
@@ -1892,7 +1892,7 @@ playerSpriteChange_machete:
     jp playerSpritehange_macheteRight
 
 playerStateChange_machete:
-    ld hl,SFX_sword_swing
+    ld hl,decompressed_sfx + SFX_sword_swing
     call playSFX
 
     call checkIfWeHitAnEnemyWithTheMachete
@@ -2192,7 +2192,7 @@ playerCollisionWithEnemies_loop_shieldable_enemy_shielded:
     ; bullet deflected:
     ld (iy),0
     push hl
-    ld hl,SFX_hit_deflected
+    ld hl,decompressed_sfx + SFX_hit_deflected
     call playSFX
     pop hl
     jp playerCollisionWithEnemies_loop_continue2

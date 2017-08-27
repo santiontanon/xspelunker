@@ -432,7 +432,7 @@ itemUpdate_button_updateDoor:
     call setDoorStatus
     call removeAllItems
     call drawAllItems
-    ld hl,SFX_door_open
+    ld hl,decompressed_sfx + SFX_door_open
     call playSFX
     jp itemUpdate_loop_next
 
@@ -596,7 +596,7 @@ checkForBoulderPushLeft_loop:
 
     ; there is space for the boulder to be moved, so a push is possible!
     push hl
-    ld hl,SFX_boulder_pushed
+    ld hl,decompressed_sfx + SFX_boulder_pushed
     call playSFX
 
     call removeAllItems
@@ -665,7 +665,7 @@ checkForBoulderPushRight_loop:
     
     ; there is space fot the boulder to be moved, so a push is possible!
     push hl
-    ld hl,SFX_boulder_pushed
+    ld hl,decompressed_sfx + SFX_boulder_pushed
     call playSFX
 
     call removeAllItems

@@ -175,8 +175,6 @@ checkInput_pause:
     xor a
     ld (MUSIC_play),a
     call CLEAR_PSG_VOLUME
-;    ld hl,SFX_item_pickup
-;    call playSFX
 
 checkInput_pause_loop:
     call chheckInput_get_P
@@ -212,14 +210,10 @@ chheckInput_get_P:
 ; and updates (previous_trigger1) with the latest state of trigger 1
 ; - modifies bc 
 checkTrigger1updatingPrevious:
-;    push hl
-;    push de
     call checkTrigger1
     ld hl,previous_trigger1
     ld b,(hl)
     ld (hl),a
- ;   pop de
- ;   pop hl
     or a
     ret z
     xor b

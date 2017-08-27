@@ -304,7 +304,7 @@ updatePlayerBullet_arrow:
     jp nz,updatePlayerBullet_arrow_handle_physics
 
     push hl
-    ld hl,SFX_fire_arrow
+    ld hl,decompressed_sfx + SFX_fire_arrow
     call playSFX
     pop hl
 
@@ -435,7 +435,7 @@ updatePlayerBullet_phaser:
     ex de,hl
     call updatePlayerBullet_change_sprite
 
-    ld hl,SFX_fire_phaser
+    ld hl,decompressed_sfx + SFX_fire_phaser
     call playSFX
 
     pop de
@@ -527,7 +527,7 @@ updatePlayerBullet_parabolic_physics_no_change_in_y_speed:
     ld a,(ix+2)
     or a
     jr z,updatePlayerBullet_parabolic_physics_no_x_collision    ; if there was no x speed, then no need to do any reversing
-    ld hl,SFX_bullet_bounce
+    ld hl,decompressed_sfx + SFX_bullet_bounce
     call playSFX   
 
     ; reverse and half x speed:
@@ -572,7 +572,7 @@ updatePlayerBullet_parabolic_physics_y_collision:
     ld a,(ix+3)
     or a
     jr z,updatePlayerBullet_parabolic_physics_zero_speed    ; if there was no x speed, then no need to do any reversing
-    ld hl,SFX_bullet_bounce
+    ld hl,decompressed_sfx + SFX_bullet_bounce
     call nz,playSFX ; only make sound if the bullet is moving a bit faster 
 
     ld a,(ix+3)

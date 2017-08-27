@@ -433,12 +433,12 @@ MUSIC_INT_PLAY_SFX:
     pop hl
     jp MUSIC_INT_LOOP
 MUSIC_INT_PLAY_SFX_OPEN_HIHAT:
-    ld hl,SFX_open_hi_hat
+    ld hl,decompressed_sfx + SFX_open_hi_hat
     call playSFX_lowPriority
     pop hl
     jp MUSIC_INT_LOOP
 MUSIC_INT_PLAY_SFX_PEDAL_HIHAT:
-    ld hl,SFX_pedal_hi_hat
+    ld hl,decompressed_sfx + SFX_pedal_hi_hat
     call playSFX_lowPriority
     pop hl
     jp MUSIC_INT_LOOP
@@ -484,7 +484,7 @@ MUSIC_INT_END_REPEAT_POP:
 
 StopPlayingMusic:
     ld hl,SFX_play
-    ld b,buffer2 - SFX_play
+    ld b,music_buffer - SFX_play
     xor a
 StopPlayingMusic_loop:
     ld (hl),a

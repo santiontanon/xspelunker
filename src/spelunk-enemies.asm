@@ -412,10 +412,10 @@ updateEnemy_piranha_splash_positive2:
     cp 16
     jp m,updateEnemy_piranha_splash_loud
 
-    ld hl,SFX_watersplash_soft
+    ld hl,decompressed_sfx + SFX_watersplash_soft
     jr updateEnemy_piranha_splash_after_sfx
 updateEnemy_piranha_splash_loud:
-    ld hl,SFX_watersplash
+    ld hl,decompressed_sfx + SFX_watersplash
 updateEnemy_piranha_splash_after_sfx:
     call playSFX
 
@@ -1093,7 +1093,7 @@ updateEnemy_alien_firing_bullet:
     ld (iy+6),a
     ld a,(ix+7)
     ld (iy+7),a
-    ld hl,SFX_fire_phaser
+    ld hl,decompressed_sfx + SFX_fire_phaser
     call playSFX
     jp updateEnemy_alien_firing_bullet_continue
 updateEnemy_alien_fire_bullet_zero_speed:
@@ -1175,7 +1175,7 @@ updateEnemy_sentinel_fire_bullet:
     sub 8
 updateEnemy_sentinel_fire_bullet_continue:
     ld (iy+7),a
-    ld hl,SFX_fire_phaser
+    ld hl,decompressed_sfx + SFX_fire_phaser
     call playSFX
     ret
 updateEnemy_sentinel_fire_bullet_zero_speed:
@@ -1193,7 +1193,7 @@ enemyHit:
     ret z   ; bullets cannot be hit
     cp ENEMY_BULLET_LASERV
     ret z   ; bullets cannot be hit
-    ld hl,SFX_hit_enemy
+    ld hl,decompressed_sfx + SFX_hit_enemy
     call playSFX    
     dec (ix+1)
     ret nz
@@ -1201,7 +1201,7 @@ enemyHit_kill:
     ld (ix),ENEMY_EXPLOSION
     ld (ix+2),0 ; timer
     ld (ix+3),0 ; explosion sprite
-    ld hl,SFX_enemy_kill
+    ld hl,decompressed_sfx + SFX_enemy_kill
     jp playSFX    
 
 enemyDoubleHit:
@@ -1212,7 +1212,7 @@ enemyDoubleHit:
     ret z   ; bullets cannot be hit
     cp ENEMY_BULLET_LASERV
     ret z   ; bullets cannot be hit
-    ld hl,SFX_hit_enemy
+    ld hl,decompressed_sfx + SFX_hit_enemy
     call playSFX    
     dec (ix+1)
     jr z,enemyHit_kill

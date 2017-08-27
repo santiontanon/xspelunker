@@ -1,17 +1,8 @@
-; for making the music louder:
-;Piano_instrument_profile:
-;    db 5,10,15,14,13,12,11,11,10,10,9,9,8,#ff
-;Wind_instrument_profile:
-;    db 0,4,8,10,12,13,14, #ff
-;SquareWave_instrument_volume:   equ 14
+  include "spelunk-constants.asm"
 
-; with these the music is quieter, and the SFX are heard better:
-Piano_instrument_profile:
-    db 4,8,12,11,10,10,9,9,8,8,7,7,6,#ff
-Wind_instrument_profile:
-    db 0,3,6,8,10,11,12, #ff
-SquareWave_instrument_volume:   equ 12
+  org #0000
 
+SFX_start_ptr:
 
 SFX_weapon_switch:
   db  7,#b8    ;; SFX all channels to tone
@@ -568,3 +559,5 @@ SFX_pedal_hi_hat:
   db 10,#00    ;; volume
   db  7,#b8    ;; SFX all channels to tone
   db SFX_CMD_END   
+
+SFX_end_ptr:

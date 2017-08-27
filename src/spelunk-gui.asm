@@ -24,7 +24,7 @@ updateHUD:
     ret
 
 updateHUD_next_item_SFX:
-    ld hl,SFX_weapon_switch
+    ld hl,decompressed_sfx + SFX_weapon_switch
     call playSFX    
 updateHUD_next_item:
     ld a,(player_selected_item)
@@ -137,7 +137,7 @@ updateTime:
     cp '0'
     jr nz,updateTime_no_alarm
 
-    ld hl,SFX_timer
+    ld hl,decompressed_sfx + SFX_timer
     call playSFX
 
 updateTime_no_alarm:

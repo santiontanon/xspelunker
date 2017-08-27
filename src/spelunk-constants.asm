@@ -84,7 +84,7 @@ COLOR_WHITE:		equ 15
 
 ;-----------------------------------------------
 ; Music related constants:
-MAX_SONG_SIZE:			equ 2048
+MAX_SONG_SIZE:			equ 1400
 
 MUSIC_INSTRUMENT_SQUARE_WAVE:   equ 0
 MUSIC_INSTRUMENT_PIANO:         equ 1 
