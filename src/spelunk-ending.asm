@@ -148,9 +148,7 @@ state_ending_loop_done:
 
 state_ending_loop2:
   halt
-  push bc
   call checkTrigger1updatingPrevious
-  pop bc
   or a
   jr z,state_ending_loop2
 

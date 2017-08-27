@@ -212,14 +212,14 @@ chheckInput_get_P:
 ; and updates (previous_trigger1) with the latest state of trigger 1
 ; - modifies bc 
 checkTrigger1updatingPrevious:
-    push hl
-    push de
+;    push hl
+;    push de
     call checkTrigger1
     ld hl,previous_trigger1
     ld b,(hl)
     ld (hl),a
-    pop de
-    pop hl
+ ;   pop de
+ ;   pop hl
     or a
     ret z
     xor b

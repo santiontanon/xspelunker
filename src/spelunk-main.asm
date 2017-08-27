@@ -445,7 +445,7 @@ gamestart_text:
 gamestart_text_end:
 
 credits_text:
-  db "SANTI ONTANON   2017"
+  db "SANTI ONTANON 2017"
 credits_text_end:
 
 interlevel_text:
@@ -457,7 +457,7 @@ interlevel_text2:
 interlevel_text2_end:
 
 gameover_text:
-  db "GAME  OVER"
+  db "GAME OVER"
 gameover_text_end:
 
 
