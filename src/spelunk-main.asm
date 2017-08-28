@@ -319,54 +319,54 @@ pcg_item_good_item_ruins_end:
 ;   - enemies (10 bytes): probability of each enemy type (9 bytes) + minimum number of enemies (1 byte)
 ;   - chunk table ptr (2 bytes)
 level_1:
-  db 6, 64,32,  4,2     
-  db 4, 0,3,32, 0, 0, 0, 0, 0,    4
+  db  6, 64,32,  4,2     
+  db  4, 0,3,32, 0, 0, 0, 0, 0,    4
   dw jungle_chunk_table
 level_2:
-  db 6, 64,64,  4,4
-  db 8, 0,3,32, 0, 0, 0, 0, 0,    8
+  db  6, 64,64,  4,4
+  db  8, 0,3,32, 0, 0, 0, 0, 0,    8
   dw jungle_chunk_table
 level_3:
-  db 7,128,32,  8,2
+  db  7,128,32,  8,2
   db 12,24,3,32,40, 0, 0, 0, 0,   8
   dw jungle_chunk_table
 level_4:
-  db 7,128,32,  8,2
+  db  7,128,32,  8,2
   db 12,16,3,24,32, 0, 0, 0, 0,   10
   dw jungle_chunk_table
 
 level_5:
-  db 6, 64,64,  4,4
-  db 0, 0,3,32,48,32, 0, 0, 0,    8
+  db  6, 64,64,  4,4
+  db  0, 0,3,32,48,32, 0, 0, 0,    8
   dw outerruins_chunk_table
 level_6:
-  db 7,128,32,  8,2
-  db 0, 0,3,32,40,32,64, 0, 0,    8
+  db  7,128,32,  8,2
+  db  0, 0,3,32,40,32,64, 0, 0,    8
   dw outerruins_chunk_table
 level_7:
-  db 6, 64,64,  4,4
-  db 0, 0,3,24,32,32,32, 0, 0,    10
+  db  6, 64,64,  4,4
+  db  0, 0,3,24,32,32,32, 0, 0,    10
   dw outerruins_chunk_table
 level_8:
-  db 7,128,32,  8,2
-  db 0, 0,3,24,32,24,24, 0, 0,    10
+  db  7,128,32,  8,2
+  db  0, 0,3,24,32,24,24, 0, 0,    10
   dw outerruins_chunk_table
 
 level_9:
-  db 6, 64,64,  4,4
-  db 0, 0,4, 0, 0,32,32,32,48,    8
+  db  6, 64,64,  4,4
+  db  0, 0,4, 0, 0,32,32,32,48,    8
   dw innerruins_chunk_table
 level_10:
-  db 6, 64,64,  4,4
-  db 0, 0,4, 0, 0,32,32,32,32,    8
+  db  6, 64,64,  4,4
+  db  0, 0,4, 0, 0,32,32,32,32,    8
   dw innerruins_chunk_table
 level_11:
-  db 6, 64,64,  4,4
-  db 0, 0,4, 0, 0,24,24,24,32,    10
+  db  6, 64,64,  4,4
+  db  0, 0,4, 0, 0,24,24,24,32,    10
   dw innerruins_chunk_table
 level_12:
-  db 7,128,32,  8,2
-  db 0, 0,6, 0, 0,24,24,24,32,    10
+  db  7,128,32,  8,2
+  db  0, 0,6, 0, 0,24,24,24,32,    10
   dw innerruins_chunk_table
 
 
@@ -439,6 +439,7 @@ endOfROM:
 RAM:
 ; Space for ROMtoRAM:
 sprite_attributes:                  ds virtual NUMBER_OF_SPRITES_USED*4
+player_selected_item:               ds virtual 1
 previous_trigger1:                  ds virtual 1
 game_cycle:                         ds virtual 1
 player_input_buffer:                ds virtual 4    ; current input, previous input, new keys pressed, double clicks
@@ -446,7 +447,6 @@ player_input_double_click_state:    ds virtual 2
 player_jump_x_inertia:              ds virtual 1    ; this is 1 if the player is jumping right, -1 if left, and 0 is jumping upwards
 player_health:                      ds virtual 1
 player_inventory:                   ds virtual INVENTORY_SIZE*2 ; for each item, we have 1 byte for item type, and 1 for number of items (max is 9)
-player_selected_item:               ds virtual 1
 current_level_section:              ds virtual 1
 current_level:                      ds virtual 1
 accumulated_time:                   ds virtual 2    ; time in seconds used to complete the whole game
@@ -503,7 +503,7 @@ pcg_exit_y_coordinate:              ds virtual 1
 pcg_exit_x_coordinate:              ds virtual 1
 pcg_path_length:                    ds virtual 1
 pcg_n_items_buffer:                 ds virtual 1    ; stores the value of 'map_n_items' before starting step 6 of PCG, in case we need to backtrack
-
+pcg_n_monkeys_per_column:           ds virtual 1
 
 RAM_to_zero_on_new_map:
 need_to_redraw_map:                 ds virtual 2    ; if 0 -> redraw!

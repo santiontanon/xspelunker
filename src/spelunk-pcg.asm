@@ -714,15 +714,24 @@ generateMap_step6:
   ld a,(map_n_items)          ; store the value of (map_n_items) in case we need to re-execute this function
   ld (pcg_n_items_buffer),a
 generateMap_step6_repeat:
-  ld hl,map+4
+;  ld hl,map+4
   ld a,(map_width)
-  ld b,0
-  ld c,a
-  add hl,bc
-  add hl,bc	; hl now points to the (4,2) position in the map
+  ld d,0
+  ld e,a
+;  add hl,de
+;  add hl,de	; hl now points to the (4,2) position in the map
   ld bc,#0204	; starting coordinates, (4,2)
-generateMap_step6_y_loop:
 generateMap_step6_x_loop:
+  ld hl,map
+  ld b,0
+  add hl,bc
+  ld b,2
+  add hl,de
+  add hl,de
+  xor a
+  ld (pcg_n_monkeys_per_column),a
+generateMap_step6_y_loop:
+  push de
   ld a,(pcg_add_pinecones)
   or a
   call nz,generateMap_step6_pinecones
@@ -739,27 +748,41 @@ generateMap_step6_x_loop:
   or a
   call nz,generateMap_step6_sentinels
   call generateMap_step6_scorpions_or_supplies	; since scorpions and supplies have the same conditions, I add them in the same function to save time and space
-  
-  inc c
-  inc c
-  inc hl
-  inc hl
-  ld a,(map_width)
-  sub 2
-  cp c
-  jr nz,generateMap_step6_x_loop
-  ld c,4
+  pop de
+
   inc b
-  inc hl
-  inc hl
-  inc hl
-  inc hl
-  inc hl
-  inc hl
+  add hl,de
   ld a,(map_height)
   dec a
   cp b
   jr nz,generateMap_step6_y_loop
+  inc c
+  inc c
+  ld a,(map_width)
+  sub 2
+  cp c
+  jr nz,generateMap_step6_x_loop
+
+;  inc c
+;  inc c
+;  inc hl
+;  inc hl
+;  ld a,(map_width)
+;  sub 2
+;  cp c
+;  jr nz,generateMap_step6_x_loop
+;  ld c,4
+;  inc b
+;  inc hl
+;  inc hl
+;  inc hl
+;  inc hl
+;  inc hl
+;  inc hl
+;  ld a,(map_height)
+;  dec a
+;  cp b
+;  jr nz,generateMap_step6_y_loop
 
   ld a,(pcg_minimum_number_of_enemies)
   ld b,a
@@ -827,6 +850,9 @@ generateMap_step6_pinecone_second_part:
 
 generateMap_step6_monkeys:
   ; - If there is "right tree" and also below: 1 in 24 of having a monkey
+  ld a,(pcg_n_monkeys_per_column)
+  cp 2
+  ret p ; if there are already 2 monkeys in a vertical line, stop!
   ld a,(hl)
   cp 13
   jr z,generateMap_step6_monkeys_tree1
@@ -861,6 +887,8 @@ generateMap_step6_monkeys_tree2:
   pop bc
   ret z	; no more enemies fit
   push hl
+  ld hl,pcg_n_monkeys_per_column ; count the number of monkeys per vertical column
+  inc (hl)
   push iy
   pop hl
   ld (hl),ENEMY_MONKEY

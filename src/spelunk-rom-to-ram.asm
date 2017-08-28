@@ -14,6 +14,8 @@ ROM_sprite_attributes:
     REPT ENEMY_SPRITE_SLOTS
     db 200,0,0,0  
     ENDM
+ROM_player_selected_item:
+    db 0
 ROM_previous_trigger1:
     db 0
 ROM_game_cycle:
@@ -35,8 +37,6 @@ ROM_player_inventory:
     db 0,0
     db 0,0
     db 0,0
-ROM_player_selected_item:
-    db 0
 ROM_current_level_section:
     db 0
 ROM_current_level:

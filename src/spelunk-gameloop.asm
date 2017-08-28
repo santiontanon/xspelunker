@@ -14,7 +14,7 @@ state_playing:
 
     ld hl,buffer2
     ld de,sprite_attributes
-    ld bc,NUMBER_OF_SPRITES_USED*4
+    ld bc,NUMBER_OF_SPRITES_USED*4 + 1  ; +1 so that we also reset the 'player_selected_item' variable
     ldir
 
 
