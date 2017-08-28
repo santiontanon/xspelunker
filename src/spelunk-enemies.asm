@@ -538,16 +538,16 @@ updateEnemy_bee_nest:
 
     ld a,(player_y)
     sub b
-    cp 10
+    cp 8
     jp p,updateEnemy_bee_nest_player_not_near
-    cp -10
+    cp -8
     jp m,updateEnemy_bee_nest_player_not_near
 
     ld a,(player_x)
     sub c
-    cp 12
+    cp 10
     jp p,updateEnemy_bee_nest_player_not_near
-    cp -12
+    cp -10
     jp m,updateEnemy_bee_nest_player_not_near
 
     ; spawn a bee!!
