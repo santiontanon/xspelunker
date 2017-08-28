@@ -106,10 +106,9 @@ state_title_loop_flash_out:
 ; copies values from ROM to RAM and zeroes all the variables before starting a new gmae
 initGameMemory:
   ;; transfer variables to RAM:
-  ld hl,ROMtoRAM
+  ld hl,ROMtoRAM_compressed
   ld de,RAM
-  ld bc,endROMtoRAM-ROMtoRAM
-  ldir
+  call pletter_unpack
 
   ld hl,RAM_to_zero_on_new_map
   ld de,RAM_to_zero_on_new_map+1

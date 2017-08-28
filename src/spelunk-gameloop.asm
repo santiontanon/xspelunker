@@ -6,6 +6,18 @@ state_playing:
 
     call clearScreenLeftToRight
 
+
+    ; clear all the sprite data
+    ld hl,ROMtoRAM_compressed
+    ld de,buffer2
+    call pletter_unpack
+
+    ld hl,buffer2
+    ld de,sprite_attributes
+    ld bc,NUMBER_OF_SPRITES_USED*4
+    ldir
+
+
     ld a,(current_level_section)
     or a
     jr nz,state_playing_music_ruins
@@ -43,12 +55,6 @@ state_playing_music_started:
     ldi
     ldi
 
-    ; clear all the sprite data
-    ld hl,ROM_sprite_attributes
-    ld de,sprite_attributes
-    ld bc,NUMBER_OF_SPRITES_USED*4
-    ldir
-
     ; copy the player sprite attributes to the VDP:
     ld hl,sprite_attributes+PLAYER_SPRITE*4
     ld de,SPRATR2+PLAYER_SPRITE*4
@@ -59,6 +65,7 @@ state_playing_music_started:
     call updateHUDhealth
     call updateHUDLevel
     call updateHUDItems
+
     ; load HUD sprite:
     ld de,item_selection_sprite
     ld hl,SPRTBL2+ITEM_SELECTION_SPRITE*32
