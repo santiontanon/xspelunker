@@ -1,6 +1,6 @@
 ## XSpelunker (MSX) by Santiago Ontañón Villar
 
-Download latest compiled ROMs (v1.1) from: https://github.com/santiontanon/xspelunker/releases/tag/1.1
+Download latest compiled ROMs (v1.2) from: https://github.com/santiontanon/xspelunker/releases/tag/1.2
 
 You will need an MSX emulator to play the game on a PC, for example OpenMSX: http://openmsx.org
 
@@ -49,8 +49,8 @@ Keyboard:
 * Crouch                - down
 * Climb up/down         - up/down
 * Grab a rope           - hold up when in the air
-* Jump when on a rope   - up twice (this can be configured in the config screen)
-* Drop when on a rope   - left or right twice
+* Jump when on a rope   - up twice (this can be configured in the config screen to be changed to space/trigger A)
+* Drop when on a rope   - down twice
 * Change selected item  - M/trigger B
 * Attack with machete   - space/trigger A
 * Pick up items         - crouch then space/trigger A
