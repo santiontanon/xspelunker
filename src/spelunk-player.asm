@@ -493,14 +493,14 @@ playerDropBomb_found_spot:
     ld a,(player_bullet_initial_y_offset+6)
     ld b,a
     call moveSprite
-    jp selectMachete
+    jp selectMachete_if_configured
 playerDropBomb_found_spot_left:
     ld a,(player_bullet_initial_x_offset+7)
     ld c,a
     ld a,(player_bullet_initial_y_offset+7)
     ld b,a
     call moveSprite
-    jp selectMachete
+    jp selectMachete_if_configured
 
 
 ;-----------------------------------------------
@@ -967,9 +967,19 @@ playerUpdate_climbing_left:
     call z,playerUpdate_set_sprite1
     call nz,playerUpdate_set_sprite2    
     ; input:
+    ld a,(config_rope_jump)
+    or a
+    jr z,playerUpdate_climbing_right_jump_with_double_tap
+    ld a,(player_input_buffer+2)    ; jump with trigger A
+    bit INPUT_TRIGGER1_BIT,a
+    jp nz,playerUpdate_climbing_jump
+    ld a,(player_input_buffer+3)
+    jr playerUpdate_climbing_right_jump_with_double_tap_continue
+playerUpdate_climbing_right_jump_with_double_tap:
     ld a,(player_input_buffer+3)    ; double click buffer
     bit INPUT_UP_BIT,a
     jp nz,playerUpdate_climbing_jump
+playerUpdate_climbing_right_jump_with_double_tap_continue:
     bit INPUT_LEFT_BIT,a
     jp nz,playerStateChange_fallLeft_withInertia_from_vine
     bit INPUT_RIGHT_BIT,a
@@ -1343,7 +1353,7 @@ playerUpdate_directional_weapon_fire_bullet_found_spot:
     push bc ; this is to remember the item type below
     call decreaseInventoryItemCountByOne
     pop bc  
-    call selectMachete  ; for stones, bombs and ropes, we reset to machete to prevent accidentally throwing all kind of things!
+    call selectMachete_if_configured  ; for stones, bombs and ropes, we reset to machete to prevent accidentally throwing all kind of things!
 
 playerUpdate_directional_weapon_fire_bullet_no_bullet_decrease:    
     push ix

@@ -17,7 +17,7 @@ readJoystick1Status:
 
 
 ;-----------------------------------------------
-; Move the character around with keyboard
+; Update the (player_input_buffer) variables with the key presses or joystick status
 checkInput:
     ld a,(player_input_buffer)
     ld b,a
@@ -30,6 +30,7 @@ checkInput:
     cpl
     and c
     ld (player_input_buffer+2),a
+
     ; update the double click buffers:
     xor a
     ld (player_input_buffer+3),a
@@ -171,6 +172,9 @@ Readjoystick:
 
 checkInput_pause:
     push af
+    ld a,(game_state)
+    cp GAME_STATE_PLAYING
+    jr nz,checkInput_pause_resume_game2
     ; pause music:
     xor a
     ld (MUSIC_play),a
@@ -195,6 +199,7 @@ checkInput_pause_resume_game:
     ; resume music:
     ld a,1
     ld (MUSIC_play),a
+checkInput_pause_resume_game2:
     pop af
     ret
 
@@ -209,24 +214,24 @@ chheckInput_get_P:
 ; checks for the status of trigger 1, sets 'a' to 1 if trigger 1 was just pressed,
 ; and updates (previous_trigger1) with the latest state of trigger 1
 ; - modifies bc 
-checkTrigger1updatingPrevious:
-    call checkTrigger1
-    ld hl,previous_trigger1
-    ld b,(hl)
-    ld (hl),a
-    or a
-    ret z
-    xor b
-    ret
+;checkTrigger1updatingPrevious:
+;    call checkTrigger1
+;    ld hl,previous_trigger1
+;    ld b,(hl)
+;    ld (hl),a
+;    or a
+;    ret z
+;    xor b
+;    ret
 
 ;-----------------------------------------------
 ; checks for the status of trigger 1
-checkTrigger1:
-    ld a,#08    ;; get the status of the 8th keyboard row (to get SPACE and arrow keys)
-    call SNSMAT
-    cpl 
-    and #01
-    ret nz
-    call readJoystick1Status
-    and #10
-    ret
+;checkTrigger1:
+;    ld a,#08    ;; get the status of the 8th keyboard row (to get SPACE and arrow keys)
+;    call SNSMAT
+;    cpl 
+;    and #01
+;    ret nz
+;    call readJoystick1Status
+;    and #10
+;    ret

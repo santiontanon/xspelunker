@@ -16,8 +16,8 @@ ROM_sprite_attributes:
     ENDM
 ROM_player_selected_item:
     db 0
-ROM_previous_trigger1:
-    db 0
+;ROM_previous_trigger1:
+;    db 0
 ROM_game_cycle:
     db 0
 ROM_player_input_buffer:

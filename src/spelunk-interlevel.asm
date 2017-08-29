@@ -2,6 +2,9 @@
 ; code the the game state where the name of the next level is being shown, 
 ; and the player is waiting for the level to be generated
 state_interlevel:
+  ld a,GAME_STATE_INTERLEVEL
+  ld (game_state),a
+
   halt
   call clearAllTheSprites
   xor a
@@ -111,9 +114,10 @@ state_interlevel_loop:
 
   ;; wait for space to be pressed:
   push bc
-  call checkTrigger1updatingPrevious
+  call checkInput
   pop bc
-  or a
+  ld a,(player_input_buffer+2)
+  bit INPUT_TRIGGER1_BIT,a
   jr z,state_interlevel_loop
   jp state_playing
 
@@ -132,6 +136,9 @@ state_interlevel_letter3:
 ;-----------------------------------------------
 ; Game over state
 state_gameover:
+  ld a,GAME_STATE_INTERLEVEL
+  ld (game_state),a
+
   call clearScreenLeftToRight
   ld hl,patterns_title_pletter
   call decompressPatternsToVDP  ; we need this, since not all the letters in "game over" are in the in-game tileset
@@ -156,9 +163,11 @@ state_gameover_loop:
 
   ;; wait for space to be pressed:
   push bc
-  call checkTrigger1updatingPrevious
+;  call checkTrigger1updatingPrevious
+  call checkInput
   pop bc
-  or a
+  ld a,(player_input_buffer+2)
+  bit INPUT_TRIGGER1_BIT,a
   jr z,state_gameover_loop
 
 state_gameover_loop_done:  

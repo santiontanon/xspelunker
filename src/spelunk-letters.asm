@@ -38,7 +38,8 @@ display_letter:
   ; wait for space to be pressed:
 display_letter_loop:
   halt
-  call checkTrigger1updatingPrevious
-  or a
+  call checkInput
+  ld a,(player_input_buffer+2)
+  bit INPUT_TRIGGER1_BIT,a
   jr z,display_letter_loop
   jp clearScreenLeftToRight

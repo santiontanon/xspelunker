@@ -1,6 +1,9 @@
 ;-----------------------------------------------
 ; state where the brain games logo is displayed, and we wait for player to press space
 state_ending:
+  ld a,GAME_STATE_ENDING
+  ld (game_state),a
+
   call state_intro_setup
 
   ld bc,0
@@ -148,8 +151,10 @@ state_ending_loop_done:
 
 state_ending_loop2:
   halt
-  call checkTrigger1updatingPrevious
-  or a
+;  call checkTrigger1updatingPrevious
+  call checkInput
+  ld a,(player_input_buffer+2)
+  bit INPUT_TRIGGER1_BIT,a
   jr z,state_ending_loop2
 
   jp state_title

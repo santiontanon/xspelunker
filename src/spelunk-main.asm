@@ -25,8 +25,10 @@ Execute:
 
     call setupROMRAMslots
 
-    ; Silence and init keyboard:
+    ; Silence, init keyboard, and clear config:
     xor a
+    ld (config_rope_jump),a
+    ld (config_machete_autoselect),a
     ld (CLIKSW),a
     ; Change background colors:
     ld (BAKCLR),a
@@ -80,6 +82,7 @@ Execute:
     include "spelunk-pcg.asm"
     include "spelunk-intro.asm"
     include "spelunk-title.asm"
+    include "spelunk-config.asm"
     include "spelunk-interlevel.asm"
     include "spelunk-gameloop.asm"
     include "spelunk-ending.asm"
@@ -412,6 +415,10 @@ gamestart_text:
   db "SPACE TO START"
 gamestart_text_end:
 
+title_config_text:
+  db "M TO CONFIGURE"
+title_config_text_end:
+
 credits_text:
   db "SANTI ONTANON 2017"
 credits_text_end:
@@ -428,6 +435,19 @@ gameover_text:
   db "GAME OVER"
 gameover_text_end:
 
+config_text1a:
+  db "ROPE JUMP: DOUBLE TAP UP"
+config_text1a_end:
+config_text1b:
+  db "ROPE JUMP: TRIGGER A.   "
+config_text1b_end:
+config_text2a:
+  db "MACHETE AUTOSELECT: OFF "
+config_text2a_end:
+config_text2b:
+  db "MACHETE AUTOSELECT: ON"
+config_text2b_end:
+
 
 endOfROM:
     ds ((($-1)/#4000)+1)*#4000-$
@@ -440,7 +460,7 @@ RAM:
 ; Space for ROMtoRAM:
 sprite_attributes:                  ds virtual NUMBER_OF_SPRITES_USED*4
 player_selected_item:               ds virtual 1
-previous_trigger1:                  ds virtual 1
+;previous_trigger1:                  ds virtual 1
 game_cycle:                         ds virtual 1
 player_input_buffer:                ds virtual 4    ; current input, previous input, new keys pressed, double clicks
 player_input_double_click_state:    ds virtual 2
@@ -460,6 +480,9 @@ randData:                           ds virtual 2    ; state of the random number
 isComputer50HzOr60Hz:               ds virtual 1    ; 0 is 50Hz, and 1 is 60Hz
 
 game_state:                         ds virtual 1
+config_rope_jump:                   ds virtual 1
+config_machete_autoselect:          ds virtual 1
+config_selected:                    ds virtual 1
 
 buffer:
 map:                                ds virtual MAX_MAP_SIZE

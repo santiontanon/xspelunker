@@ -148,9 +148,11 @@ state_intro_loop_no_need_to_draw_yet:
 
   ;; if space is pressed, skip the intro, and go to title
   push bc
-  call checkTrigger1updatingPrevious
+  call checkInput
+
   pop bc
-  or a
+  ld a,(player_input_buffer+2)
+  bit INPUT_TRIGGER1_BIT,a
   jp z,state_intro_loop
 
 state_intro_loop_done_fadeout:

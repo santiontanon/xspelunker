@@ -70,6 +70,10 @@ playerDropItem_lastItem:
 
 ;-----------------------------------------------
 ; selects the machete
+selectMachete_if_configured:
+    ld a,(config_machete_autoselect)
+    or a
+    ret nz
 selectMachete:
     ; if it's the last item we have, then move back to the machete
     xor a
