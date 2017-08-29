@@ -182,8 +182,8 @@ TILE_WATER_START:		equ 128
 TILE_WATER_END:			equ 131
 TILE_VINE_START:		equ 132
 TILE_VINE_END:			equ 135
-TILE_ROPE:			equ 135
-TILE_PLATFORM_START:		equ 136
+TILE_ROPE:			equ 134
+TILE_PLATFORM_START:		equ 135
 TILE_PLATFORM_END:		equ 139
 TILE_WALL_START:		equ 140
 TILE_WALL_END:			equ 255
@@ -202,6 +202,7 @@ MAX_ROPE_LENGTH:		equ 12
 BOMB_EXPLOSION_WIDTH:		equ 5
 BOMB_EXPLOSION_HEIGHT:		equ 5
 BOMB_TIMER:			equ 40
+COLLISION_BOX_MIN_PIXELS:	equ 3	; how many player pixels need to be in a tile, to be considered for collision
 
 ITEM_BOMB:			equ 1
 ITEM_ROPE:			equ 2

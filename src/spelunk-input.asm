@@ -38,61 +38,61 @@ checkInput:
     or a
     jp z,checkInput_state0
     dec a
-    jp z,checkInput_state_l1
-    dec a
-    jp z,checkInput_state_r1
+    jp z,checkInput_state_d1
+;    dec a
+;    jp z,checkInput_state_r1
 
 checkInput_state_u1:  ; up is pressed
     ld a,(player_input_buffer+2)
     bit INPUT_UP_BIT,a
     jp nz,checkInput_detected_up_double_click
-    bit INPUT_RIGHT_BIT,a
-    jp nz,checkInput_change_to_state_r1
-    bit INPUT_UP_BIT,a
-    jp nz,checkInput_change_to_state_u1
+    bit INPUT_DOWN_BIT,a
+    jp nz,checkInput_change_to_state_d1
+;    bit INPUT_UP_BIT,a
+;    jp nz,checkInput_change_to_state_u1
     ld hl,player_input_double_click_state+1
     dec (hl)
     jp z,checkInput_change_to_state0
     ret
 checkInput_state0:  ; no double click detectex
     ld a,(player_input_buffer+2)
-    bit INPUT_LEFT_BIT,a
-    jp nz,checkInput_change_to_state_l1
-    bit INPUT_RIGHT_BIT,a
-    jp nz,checkInput_change_to_state_r1
+    bit INPUT_DOWN_BIT,a
+    jp nz,checkInput_change_to_state_d1
+;    bit INPUT_RIGHT_BIT,a
+;    jp nz,checkInput_change_to_state_r1
     bit INPUT_UP_BIT,a
     jp nz,checkInput_change_to_state_u1
     ret
-checkInput_state_l1:  ; left is pressed
+checkInput_state_d1:  ; down is pressed
     ld a,(player_input_buffer+2)
-    bit INPUT_LEFT_BIT,a
-    jp nz,checkInput_detected_left_double_click
-    bit INPUT_RIGHT_BIT,a
-    jp nz,checkInput_change_to_state_r1
+    bit INPUT_DOWN_BIT,a
+    jp nz,checkInput_detected_down_double_click
+;    bit INPUT_RIGHT_BIT,a
+;    jp nz,checkInput_change_to_state_r1
     bit INPUT_UP_BIT,a
     jp nz,checkInput_change_to_state_u1
     ld hl,player_input_double_click_state+1
     dec (hl)
     jp z,checkInput_change_to_state0
     ret
-checkInput_state_r1:  ; right is pressed and released
-    ld a,(player_input_buffer+2)
-    bit INPUT_RIGHT_BIT,a
-    jp nz,checkInput_detected_right_double_click
-    bit INPUT_RIGHT_BIT,a
-    jp nz,checkInput_change_to_state_r1
-    bit INPUT_UP_BIT,a
-    jp nz,checkInput_change_to_state_u1
-    ld hl,player_input_double_click_state+1
-    dec (hl)
-    jp z,checkInput_change_to_state0
-    ret
+;checkInput_state_r1:  ; right is pressed and released
+;    ld a,(player_input_buffer+2)
+;    bit INPUT_RIGHT_BIT,a
+;    jp nz,checkInput_detected_right_double_click
+;    bit INPUT_RIGHT_BIT,a
+;    jp nz,checkInput_change_to_state_r1
+;    bit INPUT_UP_BIT,a
+;    jp nz,checkInput_change_to_state_u1
+;    ld hl,player_input_double_click_state+1
+;    dec (hl)
+;    jp z,checkInput_change_to_state0
+;    ret
 
 checkInput_change_to_state0:
     xor a
     ld (player_input_double_click_state),a
     ret
-checkInput_change_to_state_l1:
+checkInput_change_to_state_d1:
     ld a,1
 checkInput_change_to_state_generic:
     ld hl,player_input_double_click_state
@@ -101,21 +101,21 @@ checkInput_change_to_state_generic:
     inc hl
     ld (hl),a
     ret
-checkInput_change_to_state_r1:
+;checkInput_change_to_state_r1:
+;    ld a,2
+;    jp checkInput_change_to_state_generic
+checkInput_change_to_state_u1:
     ld a,2
     jp checkInput_change_to_state_generic
-checkInput_change_to_state_u1:
-    ld a,3
-    jp checkInput_change_to_state_generic
 
-checkInput_detected_left_double_click:
-    ld a,#04    ; left bit
+checkInput_detected_down_double_click:
+    ld a,#02    ; down bit
     ld (player_input_buffer+3),a
     jp checkInput_change_to_state0
-checkInput_detected_right_double_click:
-    ld a,#08    ; right bit
-    ld (player_input_buffer+3),a
-    jp checkInput_change_to_state0
+;checkInput_detected_right_double_click:
+;    ld a,#08    ; right bit
+;    ld (player_input_buffer+3),a
+;    jp checkInput_change_to_state0
 checkInput_detected_up_double_click:
     ld a,#01    ; up bit
     ld (player_input_buffer+3),a

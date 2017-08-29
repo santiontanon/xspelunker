@@ -1,3 +1,5 @@
+;-----------------------------------------------
+; Copies the two sprite patterns that make up the player to the VDP
 loadSecondPlayerSpriteToVDP:
     ld hl,SPRTBL2+(PLAYER_SPRITE+2)*32
     jp loadPlayerSpriteToVDP
@@ -82,6 +84,11 @@ isPlayerOverGround:
     ld b,a
     ld a,(player_x)
     ld c,a
+    ld a,(player_x+1)
+    cp COLLISION_BOX_MIN_PIXELS
+    jp m,isPlayerOverGround2
+    inc c
+isPlayerOverGround2:
     ld a,(player_y+1)
     or a
     jp nz,isPlayerOverGround_consider_only_walls
@@ -91,20 +98,18 @@ isPlayerOverGround_consider_only_walls:
     ld d,TILE_WALL_START    ; do not consider platforms, only walls 
 isThereAWallOnTopOfPlayer_noDecY:
 isPlayerOverGround_continue:
-    ; check (x,y+2)
     call getMapCell
     jp nz,isPlayerOverGround_last_check ; if "nz", if means that getMapCell returned "outofbounds", and thus the rest of calls will also
                                         ; return out of bounds. So, we directly skip the other calls
     cp d
     jp nc,isPlayerOverGround_Ground
-    inc hl  ; "hl" has a pointer to the position in the map
-    ld a,(hl)
-    cp d
-    jp nc,isPlayerOverGround_Ground
+
     ld a,(player_x+1)
-    or a
-    jp z,isPlayerOverGround_done
-    ; check (x+2,y+2)
+    cp 9-COLLISION_BOX_MIN_PIXELS
+    jp p,isPlayerOverGround_double_check
+    cp COLLISION_BOX_MIN_PIXELS
+    jp p,isPlayerOverGround_done
+isPlayerOverGround_double_check:
     inc hl  ; "hl" has a pointer to the position in the map
     ld a,(hl)
 isPlayerOverGround_last_check:
@@ -114,12 +119,20 @@ isPlayerOverGround_done:
     xor a
     ret 
 
+
 isPlayerOverGround_ignoringPlatforms:
     ld a,(player_y)
     add a,2
     ld b,a
     ld a,(player_x)
     ld c,a
+
+    ld a,(player_x+1)
+    cp COLLISION_BOX_MIN_PIXELS
+    jp m,isPlayerOverGround_ignoringPlatforms2
+    inc c
+isPlayerOverGround_ignoringPlatforms2:
+
     ld a,(player_y+1)
     jp isPlayerOverGround_consider_only_walls
 
@@ -132,6 +145,11 @@ isThereAWallOnTopOfPlayer:
     ld b,a
     ld a,(player_x)
     ld c,a
+    ld a,(player_x+1)
+    cp COLLISION_BOX_MIN_PIXELS
+    jp m,isThereAWallOnTopOfPlayer2
+    inc c
+isThereAWallOnTopOfPlayer2:
     ld a,(player_y+1)
     or a
     ld d,TILE_WALL_START
@@ -143,6 +161,10 @@ isThereAWallOnTopOfPlayer:
 ;-----------------------------------------------
 ; checks for collision to the right
 isThereAWallToTheRightOfPlayer:
+    ld a,(player_x+1)
+    cp 8-COLLISION_BOX_MIN_PIXELS
+    jp nz,isThereAWallToTheLeftOfPlayer_done    ; only when changing tile we need to do collision
+
     ld a,(player_y)
     ld b,a
     ld a,(player_x)
@@ -164,14 +186,14 @@ isThereAWallToTheRightOfPlayer:
 ;-----------------------------------------------
 ; checks for collision to the left
 isThereAWallToTheLeftOfPlayer:
+    ld a,(player_x+1)
+    cp COLLISION_BOX_MIN_PIXELS
+    jp nz,isThereAWallToTheLeftOfPlayer_done    ; only when changing tile we need to do collision
+
     ld a,(player_y)
     ld b,a
     ld a,(player_x)
     ld c,a
-    ld a,(player_x+1)
-    or a
-    jp nz,isThereAWallToTheLeftOfPlayer_noDecX
-    dec c
 isThereAWallToTheRightOfPlayer_not_at_exit:
 isThereAWallToTheLeftOfPlayer_noDecX:
     call getMapCell
@@ -258,21 +280,27 @@ isPlayerOnHazard_x:
     inc b   ; when the pixel offset on the y axis is >= 4, check one tile lower
 isPlayerOnHazard_continue:
     ld a,(player_x+1)
-    cp 4
+    cp COLLISION_BOX_MIN_PIXELS
     jp m,isPlayerOnHazard_continue2
     inc c
 isPlayerOnHazard_continue2:
-    ; check (x,y+2)
     call getMapCell
     jp nz,isPlayerOnHazard_last_check ; if "nz", if means that getMapCell returned "outofbounds", and thus the rest of calls will also
                                      ; return out of bounds. So, we directly skip the other calls
     call isHazard
     ret nz
+    ld a,(player_x+1)
+    cp 9-COLLISION_BOX_MIN_PIXELS
+    jp p,isPlayerOnHazard_double_check
+    cp COLLISION_BOX_MIN_PIXELS
+    jp p,isPlayerOnHazard_done
+isPlayerOnHazard_double_check:
     inc hl
     ld a,(hl)
 isPlayerOnHazard_last_check:
     call isHazard
     ret nz
+isPlayerOnHazard_done:
     xor a
     ret 
 
@@ -296,15 +324,15 @@ isPlayerOnWater_x:
     jp m,isPlayerOnWater_continue
     inc b   ; when the pixel offset on the y axis is >= 4, check one tile lower
 isPlayerOnWater_continue:
-    ld a,(player_x+1)
-    cp 4
-    jp m,isPlayerOnWater_continue2
-    inc c
-isPlayerOnWater_continue2:
+;    ld a,(player_x+1)
+;    cp 4
+;    jp m,isPlayerOnWater_continue2
+;    inc c
+;isPlayerOnWater_continue2:
     ; check (x,y+2)
     call getMapCell
-    jp nz,isPlayerOnWater_last_check ; if "nz", if means that getMapCell returned "outofbounds", and thus the rest of calls will also
-                                     ; return out of bounds. So, we directly skip the other calls
+;    jp nz,isPlayerOnWater_last_check ; if "nz", if means that getMapCell returned "outofbounds", and thus the rest of calls will also
+;                                     ; return out of bounds. So, we directly skip the other calls
     call isWater
     ret nz
 isPlayerOnWater_check_second_tile:
@@ -883,13 +911,38 @@ playerUpdate_jumping_boots:
     cp jumpYOffsetTable_bootsEnd-jumpYOffsetTable_boots
     jp p,playerStateChange_fall
     ld hl,jumpYOffsetTable_boots
+
+    cp (jumpYOffsetTable_bootsEnd-jumpYOffsetTable_boots)-10
+    jp p,playerUpdate_jumping_continue
+    ; check if jump has to end
+    ld a,(player_input_buffer)
+    bit INPUT_UP_BIT,a
+    jp nz,playerUpdate_jumping_continue_pre
+    ; end jump early
+    ld a,(jumpYOffsetTable_bootsEnd-jumpYOffsetTable_boots)-10
+    ld (player_state_timer),a
     jp playerUpdate_jumping_continue
+
 playerUpdate_jumping_no_boots:
     ld a,(player_state_timer)
     dec a
     cp jumpYOffsetTableEnd-jumpYOffsetTable
     jp p,playerStateChange_fall
     ld hl,jumpYOffsetTable
+
+    cp (jumpYOffsetTableEnd-jumpYOffsetTable)-10
+    jp p,playerUpdate_jumping_continue
+    ; check if jump has to end
+    ld a,(player_input_buffer)
+    bit INPUT_UP_BIT,a
+    jp nz,playerUpdate_jumping_continue_pre
+    ; end jump early
+    ld a,(jumpYOffsetTableEnd-jumpYOffsetTable)-10
+    ld (player_state_timer),a
+playerUpdate_jumping_continue_pre:
+    ld a,(player_state_timer)
+    dec a
+
 playerUpdate_jumping_continue:
     ADD_HL_A
     ld a,(hl)
@@ -980,10 +1033,12 @@ playerUpdate_climbing_right_jump_with_double_tap:
     bit INPUT_UP_BIT,a
     jp nz,playerUpdate_climbing_jump
 playerUpdate_climbing_right_jump_with_double_tap_continue:
-    bit INPUT_LEFT_BIT,a
-    jp nz,playerStateChange_fallLeft_withInertia_from_vine
-    bit INPUT_RIGHT_BIT,a
-    jp nz,playerStateChange_fallRight_withInertia_from_vine
+;    bit INPUT_LEFT_BIT,a
+;    jp nz,playerStateChange_fallLeft_withInertia_from_vine
+;    bit INPUT_RIGHT_BIT,a
+;    jp nz,playerStateChange_fallRight_withInertia_from_vine
+    bit INPUT_DOWN_BIT,a
+    jp nz,playerStateChange_fall
     ld a,(player_input_buffer)
     bit INPUT_LEFT_BIT,a
     jp nz,playerUpdate_climbing_try_to_switch_left
@@ -1573,8 +1628,16 @@ playerUpdate_decrementX:
 playerUpdate_decrementX_tileChange:
     ld (hl),7
     dec hl
+    ld a,(hl)
+    or a
+    jr z,playerUpdate_decrementX_left_border
     dec (hl)
     xor a
+    ret
+playerUpdate_decrementX_left_border:
+    inc hl
+    ld (hl),0
+    or 1
     ret
 
 
@@ -1645,9 +1708,9 @@ playerStateChange_fall:
     jr z,playerStateChange_fallRight
     jr playerStateChange_fallLeft
 
-playerStateChange_fallRight_withInertia_from_vine:
-    ld a,TIME_TO_GRAB_ROPE_AGAIN
-    ld (player_no_climb_timer),a
+;playerStateChange_fallRight_withInertia_from_vine:
+;    ld a,TIME_TO_GRAB_ROPE_AGAIN
+;    ld (player_no_climb_timer),a
 playerStateChange_fallRight_withInertia:
     ld a,1
     ld (player_jump_x_inertia),a
@@ -1663,9 +1726,9 @@ playerStateChange_fallRight:
     call loadFirstPlayerSpriteToVDP
     jp playerUpdate_set_sprite1
 
-playerStateChange_fallLeft_withInertia_from_vine:
-    ld a,TIME_TO_GRAB_ROPE_AGAIN
-    ld (player_no_climb_timer),a
+;playerStateChange_fallLeft_withInertia_from_vine:
+;    ld a,TIME_TO_GRAB_ROPE_AGAIN
+;    ld (player_no_climb_timer),a
 playerStateChange_fallLeft_withInertia:
     ld a,-1
     ld (player_jump_x_inertia),a
@@ -1769,7 +1832,7 @@ playerStateChange_jumpRight_from_vine:
     ld (player_no_climb_timer),a
     ld a,PLAYER_STATE_JUMPING_RIGHT
     ld (player_state),a
-    ld a,4 ; jump from vine is shorter
+    ld a,3 ; jump from vine is shorter
     ld (player_state_timer),a
     ld de,player_sprites+5*64
     call loadFirstPlayerSpriteToVDP
@@ -2087,13 +2150,26 @@ playerCollisionWithEnemies_no_y_correction:
 playerCollisionWithEnemies_no_crouching:
     ld a,(player_x)
     ld e,a
-    inc a
     ld l,a
     ld a,(player_x+1)
-    cp 4
+    cp COLLISION_BOX_MIN_PIXELS
+    jp m,playerCollisionWithEnemies_x_case1
+    cp 9-COLLISION_BOX_MIN_PIXELS
     jp m,playerCollisionWithEnemies_no_x_correction
+playerCollisionWithEnemies_x_case3:
     inc e
     inc l
+    inc l
+    jp playerCollisionWithEnemies_no_x_correction
+playerCollisionWithEnemies_x_case1:
+    inc l
+
+;    inc a
+;    ld a,(player_x+1)
+;    cp 4
+;    jp m,playerCollisionWithEnemies_no_x_correction
+;    inc e
+;    inc l
 
 playerCollisionWithEnemies_no_x_correction:
     ; iterate over all the enemies for collision (rather than using the "areaCollisionWithEnemies" function, I wrote a

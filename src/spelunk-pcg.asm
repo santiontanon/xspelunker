@@ -1669,11 +1669,11 @@ generateMap_beautifyOuterRuins_y_loop:
   cp -1
   jr z,generateMap_beautifyOuterRuins_y_loop_done
   ld a,(hl)
+  cp 132
+  jr z,generateMap_beautifyOuterRuins_rope_found
   cp 133
   jr z,generateMap_beautifyOuterRuins_rope_found
   cp 134
-  jr z,generateMap_beautifyOuterRuins_rope_found
-  cp 135
   jr z,generateMap_beautifyOuterRuins_rope_found
   cp 160
   jr z,generateMap_beautifyOuterRuins_rubble_found
@@ -1691,13 +1691,13 @@ generateMap_beautifyOuterRuins_y_loop:
   cp 2
   jr nz,generateMap_beautifyOuterRuins_ropes
 generateMap_beautifyOuterRuins_cables:
-  ld (hl),133
+  ld (hl),132
   jr generateMap_beautifyOuterRuins_loop_continue
 generateMap_beautifyOuterRuins_ropes:
   call random
   or #07
   jr z,generateMap_beautifyOuterRuins_set_rope_b
-  ld (hl),135
+  ld (hl),134
 generateMap_beautifyOuterRuins_loop_continue:
   dec b
   push bc
@@ -1723,7 +1723,7 @@ generateMap_beautifyOuterRuins_y_loop_done:
   ret
 
 generateMap_beautifyOuterRuins_set_rope_b:
-  ld (hl),133
+  ld (hl),132
   jr generateMap_beautifyOuterRuins_loop_continue
 
 generateMap_beautifyOuterRuins_rope_found:
@@ -1749,7 +1749,7 @@ generateMap_beautifyOuterRuins_non_bg_found:
   ld iyl,0
   jr generateMap_beautifyOuterRuins_loop_continue
 generateMap_beautifyOuterRuins_non_bg_found_replace_platform_by_rope:
-  ld a,132
+  ld a,135
   ld (hl),a
   ld iyl,0
   jr generateMap_beautifyOuterRuins_loop_continue
@@ -2054,11 +2054,11 @@ chunkFilter_fg_top_filter_pass:
   ret
 chunkFilter_fg_top_any:
   ld a,b
+;  cp PCG_CHUNK_FG_TYPE6+1
+;  jp m,chunkFilter_fg_any_pass
+  and #7f   ; clear the bit that represents "TOP"
   cp PCG_CHUNK_FG_TYPE6+1
-  jp m,chunkFilter_fg_any_pass
-  res 7,a	; clear the bit that represents "TOP"
-  cp PCG_CHUNK_FG_TYPE6+1
-  jp m,chunkFilter_fg_any_pass
+  jp c,chunkFilter_fg_any_pass
   or 1	; fail
   ld a,b
   pop bc
@@ -2077,7 +2077,7 @@ chunkFilter_fg:
 chunkFilter_fg_any:
   ld a,b
   cp PCG_CHUNK_FG_TYPE6+1
-  jp m,chunkFilter_fg_any_pass
+  jp c,chunkFilter_fg_any_pass
   or 1	; fail
   ld a,b
   pop bc
@@ -2104,11 +2104,11 @@ chunkFilter_fg_bottom:
   ret
 chunkFilter_fg_bottom_any:
   ld a,b
-  cp PCG_CHUNK_FG_TYPE6+1
-  jp m,chunkFilter_fg_any_pass
+;  cp PCG_CHUNK_FG_TYPE6+1
+;  jp m,chunkFilter_fg_any_pass
   res 6,a	; clear the bit that represents "BOTTOM"
   cp PCG_CHUNK_FG_TYPE6+1
-  jp m,chunkFilter_fg_any_pass
+  jp c,chunkFilter_fg_any_pass
   or 1	; fail
   ld a,b
   pop bc
