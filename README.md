@@ -49,7 +49,7 @@ Keyboard:
 * Crouch                - down
 * Climb up/down         - up/down
 * Grab a rope           - hold up when in the air
-* Jump when on a rope   - up twice
+* Jump when on a rope   - up twice (this can be configured in the config screen)
 * Drop when on a rope   - left or right twice
 * Change selected item  - M/trigger B
 * Attack with machete   - space/trigger A
@@ -61,6 +61,12 @@ Keyboard:
 
 In the title screen:
 * Space/trigger A to start the game
+* M/trigger B to go to the configuration screen
+
+In the configuration screen:
+* Space/trigger A to change a config option
+* up/down to change the configuration variable to edit
+* M/trigger B to go back to the title screen
 
 Each time you start a new level, it will have to be generated. Wait until the "WAIT..." message disappears, and then you can press space/trigger A to start playing.
 
