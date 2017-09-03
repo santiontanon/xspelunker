@@ -1,9 +1,15 @@
 ;-----------------------------------------------
 ; sets the target scroll variables to be centered around the player
+centerScrollOnCharacterY_lower:
+  ld a,(player_y)
+  sub 6  ; a = (player_y/8)-6 ; to see 4 more tiles below
+  jr centerScrollOnCharacterY2
+
 centerScrollOnCharacterY:
   ; y coordinates:
   ld a,(player_y)
   sub 10  ; a = (player_y/8)-10
+centerScrollOnCharacterY2:
   jp p,centerScrollOnCharacter_noUpLimit
   xor a
 centerScrollOnCharacter_noUpLimit:

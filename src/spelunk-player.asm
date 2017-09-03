@@ -721,7 +721,10 @@ playerUpdate_crouch_left:
     ; input:
     ld a,(player_input_buffer)
     bit INPUT_DOWN_BIT,a
-    jp z,playerStateChange_idle
+    jr nz,playerUpdate_crouch_keep_crouching
+    call centerScrollOnCharacterY
+    jp playerStateChange_idle
+playerUpdate_crouch_keep_crouching:
     ld a,(player_input_buffer+2)
     bit INPUT_TRIGGER1_BIT,a
     call nz,trigger1_while_crouching
@@ -735,6 +738,7 @@ trigger1_while_crouching:
     call nz,playerPickupItem
     ret nz  ; if we picked up an item, then we are done, otherwise, we drop an item
     jp playerDropItem
+
 
 
 ;-----------------------------------------------
@@ -1682,7 +1686,7 @@ playerStateChange_crouch:
 
 playerStateChange_crouchRight:
     call centerScrollOnCharacterX
-    call centerScrollOnCharacterY
+    call centerScrollOnCharacterY_lower
     ld a,PLAYER_STATE_CROUCHING_RIGHT
     ld (player_state),a
     xor a
@@ -1693,7 +1697,7 @@ playerStateChange_crouchRight:
 
 playerStateChange_crouchLeft:
     call centerScrollOnCharacterX
-    call centerScrollOnCharacterY
+    call centerScrollOnCharacterY_lower
     ld a,PLAYER_STATE_CROUCHING_LEFT
     ld (player_state),a
     xor a

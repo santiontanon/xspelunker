@@ -442,10 +442,10 @@ config_text1b:
   db "ROPE JUMP: TRIGGER A.   "
 config_text1b_end:
 config_text2a:
-  db "MACHETE AUTOSELECT: OFF "
+  db "MACHETE AUTOSELECT: ON "
 config_text2a_end:
 config_text2b:
-  db "MACHETE AUTOSELECT: ON"
+  db "MACHETE AUTOSELECT: OFF"
 config_text2b_end:
 
 
