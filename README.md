@@ -38,6 +38,7 @@ Pay special attention to:
 * Xavier cannot fall from an arbitrary height, so be careful!
 * Xavier's jump can be controller mid-air, but he will have inertia towards the initial jumping direction. So, be careful when jumping!
 * Xavier can swim, but not dive unless equipped ed with the appropriate gear. So, unless you have the diving mask, stay on the surface of water!
+* If you crouch, you can see further down, to plan for long drops.
 * If you are near the edge of the screen and want to see what's beyond, just crouch. Each time you crouch, the game will center the screen on Xavier, letting you see what is around.
 * Keep a healthy supply of bombs and ropes around: in the earlier stages of the game, all the levels are guaranteed to be solveable without requiring the use of bombs and ropes. But as the game progresses there is a small chance that that is not the case. So, you might need to rely on ropes or bombs (or even on some rarely found items such as the diving mask) to be able to complete levels. 
 
@@ -52,13 +53,14 @@ Keyboard:
 * Grab a rope           - hold up when in the air
 * Jump when on a rope   - up twice (this can be configured in the config screen to be changed to space/trigger A)
 * Drop when on a rope   - down twice
-* Change selected item  - M/trigger B
+* Change selected item  - M/trigger B or number keys 1 through 8
 * Attack with machete   - space/trigger A
 * Pick up items         - crouch then space/trigger A
 * Drop items            - select them, then crouch plus space/trigger A
 * Throw bombs/ropes/etc.- select them, hold space, then point in the direction you want to throw, and release space
 * Push boulders         - just keep walking onto them
 * Pause                 - P
+
 
 In the title screen:
 * Space/trigger A to start the game
