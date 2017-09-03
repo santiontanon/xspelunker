@@ -31,6 +31,23 @@ checkInput:
     and c
     ld (player_input_buffer+2),a
 
+    ; update the number input buffer:
+    ld a,#00    ;; get the status of the 0th keyboard row (to get 1, 2, 3, 4, 5, 6, and 7)
+    call SNSMAT 
+    cpl
+    srl a
+    ld b,a
+    push bc
+    ld a,#01    ;; get the status of the 0th keyboard row (to get 8)
+    call SNSMAT
+    pop bc
+    bit 0,a
+    ld a,b
+    jr nz,checkInput_numbers_8_not_pressed
+    or #80
+checkInput_numbers_8_not_pressed:
+    ld (player_input_numbers_buffer),a
+
     ; update the double click buffers:
     xor a
     ld (player_input_buffer+3),a

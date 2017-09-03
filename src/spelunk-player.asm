@@ -574,6 +574,27 @@ playerUpdate:
     call decreaseHLIfNotZero
     call playerFSMUpdate
 
+    ; select items with numbers
+    ld a,(player_input_numbers_buffer)
+    or a
+    jr z,playerUpdate_no_number_pressed
+    ld b,8
+playerUpdate_check_number_input:
+    bit 0,a
+    jr z,playerUpdate_number_not_pressed
+    push af
+    push bc
+    ld a,8
+    sub b
+    call selectItemIfAvailable
+    pop bc
+    pop af
+playerUpdate_number_not_pressed:
+    srl a
+    dec b
+    jr nz,playerUpdate_check_number_input
+playerUpdate_no_number_pressed:
+
     ; check for out of bounds
     ld a,(player_y)
     ld b,a

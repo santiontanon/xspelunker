@@ -40,6 +40,7 @@ updateHUD_next_item:
     or a
     jr z,updateHUD_next_item
     ld a,(player_selected_item)
+updateHUD_next_item_set_selection_sprite:
     add a,a
     add a,a
     add a,a
@@ -47,6 +48,31 @@ updateHUD_next_item:
     add a,7*8
     ld (sprite_attributes+ITEM_SELECTION_SPRITE*4+1),a
     ret
+
+
+;-----------------------------------------------
+; selects the item in the slot 'a' (if we have anything in that slot)
+selectItemIfAvailable:
+    ld hl,player_selected_item
+    ld b,(hl)
+    cp b
+    ret z   ; if it's the same as we have selected, ignore
+    ld hl,player_inventory
+    ld b,0
+    ld c,a
+    add hl,bc
+    add hl,bc
+    ld b,a
+    ld a,(hl)
+    or a
+    ld a,b
+    ret z
+    push af
+    ld hl,decompressed_sfx + SFX_weapon_switch
+    call playSFX    
+    pop af
+    ld (player_selected_item),a
+    jr updateHUD_next_item_set_selection_sprite
 
 
 ;-----------------------------------------------

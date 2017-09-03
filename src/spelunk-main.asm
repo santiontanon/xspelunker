@@ -464,6 +464,7 @@ player_selected_item:               ds virtual 1
 game_cycle:                         ds virtual 1
 player_input_buffer:                ds virtual 4    ; current input, previous input, new keys pressed, double clicks
 player_input_double_click_state:    ds virtual 2
+player_input_numbers_buffer:        ds virtual 1    ; for selecting items with numbers
 player_jump_x_inertia:              ds virtual 1    ; this is 1 if the player is jumping right, -1 if left, and 0 is jumping upwards
 player_health:                      ds virtual 1
 player_inventory:                   ds virtual INVENTORY_SIZE*2 ; for each item, we have 1 byte for item type, and 1 for number of items (max is 9)

@@ -24,6 +24,8 @@ ROM_player_input_buffer:
     db 0,0,0,0
 ROM_player_input_double_click_state:
     db 0,0
+ROM_player_input_numbers_buffer:
+    db 0
 ROM_player_jump_x_inertia:
     db 0
 ROM_player_health:
