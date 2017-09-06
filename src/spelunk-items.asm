@@ -568,13 +568,13 @@ checkForBoulderPushLeft_loop:
     push hl
     ld a,(hl)
     cp ITEM_BOULDER
-    jp nz,checkForBoulderPushLeft_loop_next
+    jr nz,checkForBoulderPushLeft_loop_next
     inc hl
     ld c,(hl)
     ld a,(player_x)
-    sub 2
+    dec a
     cp c
-    jp nz,checkForBoulderPushLeft_loop_next
+    jr nz,checkForBoulderPushLeft_loop_next
     inc hl
     ld c,(hl)
     ld a,(player_y)
@@ -604,8 +604,7 @@ checkForBoulderPushLeft_loop:
     inc hl
     dec (hl)
     dec hl
-    call drawAllItems
-    ret
+    jp drawAllItems
 
 checkForBoulderPushLeft_loop_next:
     pop hl
@@ -622,8 +621,7 @@ checkForBoulderPush:
     ret nz  ; if there is something that could potentially block the boulder, return
     inc b
     call getMapCell
-    call isWall
-    ret
+    jp isWall
 
 
 ;-----------------------------------------------
@@ -636,13 +634,13 @@ checkForBoulderPushRight_loop:
     push hl
     ld a,(hl)
     cp ITEM_BOULDER
-    jp nz,checkForBoulderPushRight_loop_next
+    jr nz,checkForBoulderPushRight_loop_next
     inc hl
     ld c,(hl)
     ld a,(player_x)
     add a,2
     cp c
-    jp nz,checkForBoulderPushRight_loop_next
+    jr nz,checkForBoulderPushRight_loop_next
     inc hl
     ld c,(hl)
     ld a,(player_y)
@@ -673,8 +671,7 @@ checkForBoulderPushRight_loop:
     inc hl
     inc (hl)
     dec hl
-    call drawAllItems
-    ret
+    jp drawAllItems
 
 checkForBoulderPushRight_loop_next:
     pop hl

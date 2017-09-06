@@ -122,9 +122,9 @@ getMapCellPointer_positive_x_offset:
   add hl,bc
   xor a ; "Z" flag to indicate we are inside the bounds of the map
   ret
-getMapCellPointerCheckingBounds_outOfBounds:
-  or 1  ; "NZ" flag to indicate we are out of bounds
-  ret
+;getMapCellPointerCheckingBounds_outOfBounds:
+;  or 1  ; "NZ" flag to indicate we are out of bounds
+;  ret
 
 
 ;-----------------------------------------------
@@ -163,6 +163,8 @@ isVine:
   jp c,isVine_false
   cp TILE_VINE_END+1
   jp nc,isVine_false
+isVine_true:
+getMapCellPointerCheckingBounds_outOfBounds:
   or 1
   ret
 isHazard_false:

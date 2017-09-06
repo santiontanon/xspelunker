@@ -151,6 +151,17 @@ checkNewInput:
     cpl
     and #f1     ;; keep only the arrow keys and space
     or b        ;; we bring the state of M from before
+
+    ld b,a      
+    ld a,#05    ;; get the 5th row for "Z" and "X" as alternative keys for "M" and "SPACE"
+    call SNSMAT
+    cpl
+    rlc a
+    rlc a
+    rlc a
+    and #05
+    or b
+
     jr z,Readjoystick   ;; if no key was pressed, then check the joystick
     ; translarte the keyboard input to the same exact way in which the joystick is read
     ld b,a
@@ -213,6 +224,9 @@ checkInput_pause_p_pressed_again:
     halt
     jr checkInput_pause_p_pressed_again
 checkInput_pause_resume_game:
+    ld a,(config_music)
+    or a
+    jr nz,checkInput_pause_resume_game2 ; if there is no music, do not restart it
     ; resume music:
     ld a,1
     ld (MUSIC_play),a

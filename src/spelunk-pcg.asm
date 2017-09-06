@@ -1266,19 +1266,21 @@ generateMap_step6_scorpions_or_supplies_no_alien:
   and #3f	; 1/64th
   jr nz,generateMap_step6_scorpions_or_supplies_no_stone
   ld a,ITEM_STONE
-  dec b
-  dec b
-  push hl
-  call spawnItemInMapPCG
-  pop hl
-  inc b
-  inc b
-  ret
+  jr generateMap_step6_scorpions_or_supplies_item2
+;  dec b
+;  dec b
+;  push hl
+;  call spawnItemInMapPCG
+;  pop hl
+;  inc b
+;  inc b
+;  ret
 generateMap_step6_scorpions_or_supplies_no_stone:
   call random
   and #7f	; 1/128th
   ret nz
   ld a,ITEM_ARROW
+generateMap_step6_scorpions_or_supplies_item2:
   dec b
   dec b
   push hl

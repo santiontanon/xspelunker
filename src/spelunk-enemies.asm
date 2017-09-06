@@ -1176,8 +1176,7 @@ updateEnemy_sentinel_fire_bullet:
 updateEnemy_sentinel_fire_bullet_continue:
     ld (iy+7),a
     ld hl,decompressed_sfx + SFX_fire_phaser
-    call playSFX
-    ret
+    jp playSFX
 updateEnemy_sentinel_fire_bullet_zero_speed:
     ld (iy),0
     ret

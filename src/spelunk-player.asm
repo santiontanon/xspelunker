@@ -387,6 +387,8 @@ playerPickupItem:
     ret z   ; we cannot pick up buttons
     cp ITEM_DOOR
     ret z   ; we cannot pick up doors
+    cp ITEM_BOULDER
+    ret z   ; we cannot pick up doors
     ld c,a
 
     ; clear the items from the map:

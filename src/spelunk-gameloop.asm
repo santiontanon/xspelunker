@@ -17,7 +17,9 @@ state_playing:
     ld bc,NUMBER_OF_SPRITES_USED*4 + 1  ; +1 so that we also reset the 'player_selected_item' variable
     ldir
 
-
+    ld a,(config_music)
+    or a
+    jr nz,state_playing_music_started
     ld a,(current_level_section)
     or a
     jr nz,state_playing_music_ruins
@@ -31,7 +33,6 @@ state_playing_music_ruins:
     call PlayCompressedSong    
 state_playing_music_started:
 
-
     ld a,(map_width)
     sub 32
     ld (scroll_x_limit),a
@@ -44,9 +45,10 @@ state_playing_music_started:
     ld (hl),'3'
     inc hl
     inc hl
-    ld (hl),'0'
+    ld a,'0'
+    ld (hl),a
     inc hl
-    ld (hl),'0'
+    ld (hl),a
 
     call centerScrollOnCharacterY
     call centerScrollOnCharacterX

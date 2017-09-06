@@ -7,7 +7,6 @@ state_interlevel:
 
   halt
   call clearAllTheSprites
-  xor a
   call FILLSCREEN
 
   ; set the title patterns, so we have all the letter characters

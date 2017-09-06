@@ -377,21 +377,6 @@ SFX_explosion:
   db SFX_CMD_END    
 
 
-;SFX_fire_bullet_enemy:   
-;  db 7,#b8    ;; SFX all channels to tone
-;  db 4,#00,5,#02    ;; frequency
-;  db 10,#10          ;; volume
-;  db 11,#00,12,#10  ;; envelope frequency
-;  db 13,#09         ;; shape of the envelope
-;  db MUSIC_CMD_SKIP,MUSIC_CMD_SKIP
-;  db 4,#00,5,#04    ;; frequency
-;  db MUSIC_CMD_SKIP, MUSIC_CMD_SKIP, MUSIC_CMD_SKIP, MUSIC_CMD_SKIP
-;  db MUSIC_CMD_SKIP, MUSIC_CMD_SKIP, MUSIC_CMD_SKIP, MUSIC_CMD_SKIP
-;  db MUSIC_CMD_SKIP, MUSIC_CMD_SKIP, MUSIC_CMD_SKIP, MUSIC_CMD_SKIP
-;  db 10,#00          ;; silence
-;  db SFX_CMD_END    
-
-
 SFX_hit_enemy:
   db  7,#b8    ;; SFX all channels to tone
   db 10,#0f    ;; volume

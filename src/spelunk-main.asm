@@ -27,8 +27,13 @@ Execute:
 
     ; Silence, init keyboard, and clear config:
     xor a
-    ld (config_rope_jump),a
-    ld (config_machete_autoselect),a
+    ld hl,config_rope_jump
+    ld (hl),a
+    inc hl
+    ld (hl),a
+    inc hl
+    ld (hl),a
+    inc hl
     ld (CLIKSW),a
     ; Change background colors:
     ld (BAKCLR),a
@@ -43,7 +48,6 @@ Execute:
     call WRTVDP
 
     ;; clear the screen, set up music interrupt, and decompress data:
-    xor a
     call FILLSCREEN
     call SETUP_MUSIC_INTERRUPT
     ; player sprites are not decompressed here, since we need their space for the level patches
@@ -435,18 +439,46 @@ gameover_text:
   db "GAME OVER"
 gameover_text_end:
 
+;config_text1a:
+;  db "ROPE JUMP: DOUBLE TAP UP"
+;config_text1a_end:
+;config_text1b:
+;  db "ROPE JUMP: TRIGGER A.   "
+;config_text1b_end:
+;config_text2a:
+;  db "MACHETE AUTOSELECT: ON "
+;config_text2a_end:
+;config_text2b:
+;  db "MACHETE AUTOSELECT: OFF"
+;config_text2b_end:
+
+config_text1:
+  db "ROPE JUMP:"
+config_text1_end:
 config_text1a:
-  db "ROPE JUMP: DOUBLE TAP UP"
+  db "DOUBLE TAP UP"
 config_text1a_end:
 config_text1b:
-  db "ROPE JUMP: TRIGGER A.   "
+  db "TRIGGER A.   "
 config_text1b_end:
+
+config_text2:
+  db "MACHETE AUTOSELECT:"
+config_text2_end:
 config_text2a:
-  db "MACHETE AUTOSELECT: ON "
+config_text3a:
+  db "ON "
 config_text2a_end:
+config_text3a_end:
 config_text2b:
-  db "MACHETE AUTOSELECT: OFF"
+config_text3b:
+  db "OFF"
 config_text2b_end:
+config_text3b_end:
+
+config_text3:
+  db "IN-GAME MUSIC:"
+config_text3_end:
 
 
 endOfROM:
@@ -483,6 +515,7 @@ isComputer50HzOr60Hz:               ds virtual 1    ; 0 is 50Hz, and 1 is 60Hz
 game_state:                         ds virtual 1
 config_rope_jump:                   ds virtual 1
 config_machete_autoselect:          ds virtual 1
+config_music:                       ds virtual 1
 config_selected:                    ds virtual 1
 
 buffer:

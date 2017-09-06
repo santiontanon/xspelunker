@@ -30,6 +30,7 @@ clearAllTheSprites:
 ;-----------------------------------------------
 ; Fills the whole screen with the pattern in register 'a'
 FILLSCREEN:
+    xor a
     ld bc,768
     ld hl,NAMTBL2
     jp FILVRM
@@ -376,7 +377,6 @@ fadeOutPatternsAndSprites_inner_loop:
   cp 8
   jp nz,fadeOutPatternsAndSprites_loop
 
-  xor a
   call FILLSCREEN
   jp clearAllTheSprites
 
@@ -401,6 +401,6 @@ fadeOutPatternsAndSprites_copy_attributes:
   pop bc
   pop hl
   ld de,CLRTBL2+512*8
-  call LDIRVM  
-  ret
+  jp LDIRVM  
+
 
