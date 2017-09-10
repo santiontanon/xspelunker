@@ -1,6 +1,6 @@
 ## XSpelunker (MSX) by Santiago Ontañón Villar
 
-Download latest compiled ROMs (v1.3) from: https://github.com/santiontanon/xspelunker/releases/tag/1.3
+Download latest compiled ROMs (v1.4) from: https://github.com/santiontanon/xspelunker/releases/tag/1.4
 
 You will need an MSX emulator to play the game on a PC, for example OpenMSX: http://openmsx.org
 
@@ -53,10 +53,10 @@ Keyboard:
 * Grab a rope           - hold up when in the air
 * Jump when on a rope   - up twice (this can be configured in the config screen to be changed to space/trigger A)
 * Drop when on a rope   - down twice
-* Change selected item  - M/trigger B or number keys 1 through 8
-* Attack with machete   - space/trigger A
-* Pick up items         - crouch then space/trigger A
-* Drop items            - select them, then crouch plus space/trigger A
+* Change selected item  - M / Z / joystick trigger B or number keys 1 through 8
+* Attack with machete   - space / X / joystick trigger A
+* Pick up items         - crouch then space / X / joystick trigger A
+* Drop items            - select them, then crouch plus space / X / joystick trigger A
 * Throw bombs/ropes/etc.- select them, hold space, then point in the direction you want to throw, and release space
 * Push boulders         - just keep walking onto them
 * Pause                 - P
@@ -67,9 +67,9 @@ In the title screen:
 * M/trigger B to go to the configuration screen
 
 In the configuration screen:
-* Space/trigger A to change a config option
+* Space / X / joystick trigger A to change a config option
 * up/down to change the configuration variable to edit
-* M/trigger B to go back to the title screen
+* M / Z / joystick trigger B to go back to the title screen
 
 Each time you start a new level, it will have to be generated. Wait until the "WAIT..." message disappears, and then you can press space/trigger A to start playing.
 
