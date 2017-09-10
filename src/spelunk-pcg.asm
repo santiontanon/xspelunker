@@ -2269,6 +2269,7 @@ generateMap_sample_supply_item:
   ld a,pcg_item_supply_end-pcg_item_supply
   call randomModuloA
   ld hl,pcg_item_supply
+generateMap_sample_supply_item_continue:
   ADD_HL_A
   ld a,(hl)
   pop hl
@@ -2280,10 +2281,11 @@ generateMap_sample_any_item_jungle:
   ld a,pcg_item_any_jungle_end-pcg_item_any_jungle
   call randomModuloA
   ld hl,pcg_item_any_jungle
-  ADD_HL_A
-  ld a,(hl)
-  pop hl
-  ret
+  jr generateMap_sample_supply_item_continue
+;  ADD_HL_A
+;  ld a,(hl)
+;  pop hl
+;  ret
 
 ; shield:1,bow:1,boots:1,scubamask:1
 generateMap_sample_good_item_jungle:
@@ -2291,10 +2293,11 @@ generateMap_sample_good_item_jungle:
   ld a,pcg_item_good_item_jungle_end-pcg_item_good_item_jungle
   call randomModuloA
   ld hl,pcg_item_good_item_jungle
-  ADD_HL_A
-  ld a,(hl)
-  pop hl
-  ret
+  jr generateMap_sample_supply_item_continue
+;  ADD_HL_A
+;  ld a,(hl)
+;  pop hl
+;  ret
 
 ; :5,bomb:3,rope:3,shield:1,bow:2,arrow:3,boots:1,scubamask:1,boulder:2
 generateMap_sample_any_item_ruins:
@@ -2302,10 +2305,11 @@ generateMap_sample_any_item_ruins:
   ld a,pcg_item_any_ruins_end-pcg_item_any_ruins
   call randomModuloA
   ld hl,pcg_item_any_ruins
-  ADD_HL_A
-  ld a,(hl)
-  pop hl
-  ret
+  jr generateMap_sample_supply_item_continue
+;  ADD_HL_A
+;  ld a,(hl)
+;  pop hl
+;  ret
 
 ; shield:1,bow:1,boots:1,scubamask:1
 generateMap_sample_good_item_ruins:
@@ -2313,10 +2317,11 @@ generateMap_sample_good_item_ruins:
   ld a,pcg_item_good_item_ruins_end-pcg_item_good_item_ruins
   call randomModuloA
   ld hl,pcg_item_good_item_ruins
-  ADD_HL_A
-  ld a,(hl)
-  pop hl
-  ret
+  jr generateMap_sample_supply_item_continue
+;  ADD_HL_A
+;  ld a,(hl)
+;  pop hl
+;  ret
 
 ;-----------------------------------------------
 ; zeroes the current map, in preparation to call the procedural map generator

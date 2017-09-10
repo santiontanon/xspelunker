@@ -802,6 +802,9 @@ playerUpdate_falling_loop:
     jp nz,playerStateChange_swimming
     djnz playerUpdate_falling_loop
 playerUpdate_falling_no_decrement:
+    ld a,(player_state_timer)
+    and #03
+    jp z,playerUpdate_falling_no_decrement_skip_inertia
     ld a,(player_jump_x_inertia)
     cp 1
     push af
@@ -809,8 +812,9 @@ playerUpdate_falling_no_decrement:
     pop af
     inc a
     call z,playerUpdate_safe_decrementX
+playerUpdate_falling_no_decrement_skip_inertia:
     ld a,(player_state_timer)
-    and 1
+    and #03
     jp z,playerUpdate_falling_no_x_control
     ld a,(player_input_buffer)
     bit INPUT_RIGHT_BIT,a
@@ -982,6 +986,9 @@ playerUpdate_jumping_loop:
     pop bc
     djnz playerUpdate_jumping_loop
 playerUpdate_jumping_no_decrement:
+    ld a,(player_state_timer)
+    and #03
+    jp z,playerUpdate_jumping_no_decrement_skip_inertia
     ld a,(player_jump_x_inertia)
     cp 1
     push af
@@ -989,9 +996,10 @@ playerUpdate_jumping_no_decrement:
     pop af
     inc a
     call z,playerUpdate_safe_decrementX
+playerUpdate_jumping_no_decrement_skip_inertia:
     ld a,(player_state_timer)
-    and 1
-    jp z,playerUpdate_jumping_no_x_control  ;; air control is only 50% of the movement speed
+    and #03
+    jp z,playerUpdate_jumping_no_x_control  ;; air control is only 75% of the movement speed
     ld a,(player_input_buffer)
     bit INPUT_RIGHT_BIT,a
     call nz,playerUpdate_safe_incrementX

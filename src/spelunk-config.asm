@@ -63,12 +63,12 @@ state_config_loop:
   bit INPUT_UP_BIT,a
   jr nz,state_config_up
   bit INPUT_DOWN_BIT,a
-  jr nz,state_config_up
+  jr nz,state_config_down
   bit INPUT_TRIGGER1_BIT,a
   jr nz,state_config_change
   jr state_config_loop
 
-state_config_up:
+state_config_down:
   ld hl,config_selected
   ld a,(hl)
   inc a
@@ -76,8 +76,20 @@ state_config_up:
   cp 3
   jr nz,state_config_loop
   xor a
+state_config_down_continue:
   ld (hl),a
   jr state_config_loop
+
+state_config_up:
+  ld hl,config_selected
+  ld a,(hl)
+  dec a
+  ld (hl),a
+  cp -1
+  jr nz,state_config_loop
+  ld a,2
+  jr state_config_down_continue
+
 
 state_config_change:
   ld a,(config_selected)
