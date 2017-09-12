@@ -26,7 +26,7 @@ updateExplosion:
     ld iyl,a    ; we save the left coordinate for later
     ex de,hl    ; pointer to the buffer to store the background is now in DE
     push bc
-    call getMapCellPointer
+    call getMapCellPointerEvenIfOutOfBounds
     pop bc
     ld ix,BOMB_EXPLOSION_WIDTH + BOMB_EXPLOSION_HEIGHT*256
 updateExplosion_loop:
@@ -77,7 +77,7 @@ updateExplosion_drawExplosion:
     ld de,largeExplosion_tiles
 updateExplosion_drawSmallExplosion_entrypoint:
     push bc
-    call getMapCellPointer
+    call getMapCellPointerEvenIfOutOfBounds
     pop bc
 updateExplosion_drawExplosion_loopy:
     ld iyl,3
@@ -145,7 +145,7 @@ updateExplosionAfter:
     ld iyl,a    ; we save the left coordinate for later
     ex de,hl    ; pointer to the buffer where the background is stored is now in DE
     push bc
-    call getMapCellPointer
+    call getMapCellPointerEvenIfOutOfBounds
     pop bc
     ld ix,BOMB_EXPLOSION_WIDTH + BOMB_EXPLOSION_HEIGHT*256
 updateExplosionAfter_loop:

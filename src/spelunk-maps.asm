@@ -105,6 +105,7 @@ getMapCellPointerCheckingBounds:
   jp c,getMapCellPointerCheckingBounds_outOfBounds
 getMapCellPointer:
   ld h,0
+getMapCellPointer2:
   ld l,b  ; hl = y
   ld a,(map_width_log2)
   ld b,a
@@ -125,6 +126,12 @@ getMapCellPointer_positive_x_offset:
 ;getMapCellPointerCheckingBounds_outOfBounds:
 ;  or 1  ; "NZ" flag to indicate we are out of bounds
 ;  ret
+
+getMapCellPointerEvenIfOutOfBounds:
+  bit 7,b
+  jr z,getMapCellPointer
+  ld h,#ff
+  jr getMapCellPointer2
 
 
 ;-----------------------------------------------
