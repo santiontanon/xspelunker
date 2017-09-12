@@ -153,7 +153,7 @@ generateMap_step1_not_inner_ruins:
   add a,a	
   add a,6	; a = a*16+8
   ld (player_y),a
-  ld a,1
+  xor a
   ld (player_x),a  
   pop af
 
@@ -1016,7 +1016,7 @@ generateMap_step6_bee_nests:
   pop hl
   ld (hl),ENEMY_BEE_NEST
   inc hl
-  ld (hl),3 ; hp
+  ld (hl),2 ; hp
   call random
   inc hl
   ld (hl),a ; state timer
