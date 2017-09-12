@@ -1,6 +1,6 @@
 ## XSpelunker (MSX) by Santiago Ontañón Villar
 
-Download latest compiled ROMs (v1.4.1) from: https://github.com/santiontanon/xspelunker/releases/tag/1.4.1
+Download latest compiled ROMs (v1.4.2) from: https://github.com/santiontanon/xspelunker/releases/tag/1.4.2
 
 You will need an MSX emulator to play the game on a PC, for example OpenMSX: http://openmsx.org
 
