@@ -257,11 +257,19 @@ isPlayerOverVine_check_second_tile:
     pop bc
     call isVine
     jp nz,isPlayerOverVine_isVine
+isPlayerOverVine_notVine:
     xor a
     ret 
 isPlayerOverVine_isVine:
     ld hl,player_vine_x_coordinate
     ld (hl),c ; the "x" coordinate that matched with the vine
+
+    ld a,(player_y)
+    ld b,a
+    call getMapCell
+    call isWall
+    jp nz,isPlayerOverVine_notVine  ; if the player would collide with a wall if grabbing the vine, then it's not a vine!
+    or 1
     ret
 
 
@@ -1906,12 +1914,11 @@ playerStateChange_climbing_right:
     ld a,(player_vine_x_coordinate)
     dec a
     ld (player_x),a
-    xor a
-    ld (player_x+1),a
-    ld (player_jump_x_inertia),a
     ld a,PLAYER_STATE_CLIMBING_RIGHT
     ld (player_state),a
     xor a
+    ld (player_x+1),a
+    ld (player_jump_x_inertia),a
     ld (player_state_timer),a
     ld de,player_sprites+2*64
     call loadFirstPlayerSpriteToVDP
@@ -1926,12 +1933,11 @@ playerStateChange_climbing_left_accounting_for_timer:
 playerStateChange_climbing_left:
     ld a,(player_vine_x_coordinate)
     ld (player_x),a
-    xor a
-    ld (player_x+1),a
-    ld (player_jump_x_inertia),a
     ld a,PLAYER_STATE_CLIMBING_LEFT
     ld (player_state),a
     xor a
+    ld (player_x+1),a
+    ld (player_jump_x_inertia),a
     ld (player_state_timer),a
     ld de,player_sprites+9*64
     call loadFirstPlayerSpriteToVDP
@@ -1943,18 +1949,27 @@ playerStateChange_climbing_left:
 playerStateChange_swimming:
     call spawnNewEnemy
     jr z,playerStateChange_swimming_no_splash
-    ld (iy),ENEMY_EXPLOSION
-    ld (iy+1),1
-    ld (iy+2),0
-    ld (iy+3),1 ; splash sprite
+    push iy
+    pop hl
+    ld (hl),ENEMY_EXPLOSION
+    inc hl
+    ld (hl),1
+    inc hl
+    ld (hl),0
+    inc hl
+    ld (hl),1   ; splash sprite
     ld a,(player_y)
     dec a
-    ld (iy+4),a
-    ld (iy+5),0
-    ld a,(player_x)
-    ld (iy+6),a
-    ld a,(player_x+1)
-    ld (iy+7),a
+    inc hl
+    ld (hl),a
+    inc hl
+    ld (hl),0
+    inc hl
+    ld de,player_x
+    ex de,hl
+    ldi
+    ldi
+
 playerStateChange_swimming_no_splash:
     ld a,(player_state)
     and #01

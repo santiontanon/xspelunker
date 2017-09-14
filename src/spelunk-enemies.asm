@@ -553,16 +553,34 @@ updateEnemy_bee_nest:
     ; spawn a bee!!
     call spawnNewEnemy
     jp z,updateEnemy_bee_nest_player_not_near   ;; if no more enemy spots exist
-    ld (iy),ENEMY_BEE
-    ld (iy+1),1
-    ld (iy+2),2
+    push iy
+    pop hl
+    ld (hl),ENEMY_BEE
+    inc hl
+    ld (hl),1
+    inc hl
+    ld (hl),2
     ld a,(ix+4)
-    ld (iy+4),a
-    ld (iy+5),0
+    inc hl
+    inc hl
+    ld (hl),a
+    inc hl
+    ld (hl),0
     ld a,(ix+6)
-    ld (iy+6),a
-    ld (iy+7),0
+    inc hl
+    ld (hl),a
+    inc hl
+    ld (hl),0
 
+;    ld (iy),ENEMY_BEE
+;    ld (iy+1),1
+;    ld (iy+2),2
+;    ld a,(ix+4)
+;    ld (iy+4),a
+;    ld (iy+5),0
+;    ld a,(ix+6)
+;    ld (iy+6),a
+;    ld (iy+7),0
 updateEnemy_bee_nest_player_not_near:
     ld iyl,COLOR_DARK_YELLOW
     ld de,enemy_sprites+ENEMYSPRITE_OFFSET_BEE_NEST
