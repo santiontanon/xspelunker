@@ -36,7 +36,7 @@ public class JungleLevelGenerator {
     */
     
     public static void main(String args[]) throws Exception {
-        generateJungleLevel(8,2);
+        generateJungleLevel(4,4);
     }
     
     /*
@@ -44,7 +44,7 @@ public class JungleLevelGenerator {
         - Jungle levels always have the start position on the left, and target on the right
     */
     public static void generateJungleLevel(int width, int height) throws Exception {
-        Random r = new Random();
+        Random r = new Random(0);
         int [][]rooms = new int[width][height];
         List<LevelChunk> foliageChunks = new ArrayList<>();
         List<LevelChunk> roomPatterns[] = new List[6];
@@ -203,6 +203,7 @@ public class JungleLevelGenerator {
         for(Item i:m.items) {
             if (i.types.get(0).equals("button")) idol_required = true;
         }
+        
         
         // 5.1) Add the exit sign:
         for(int i = ROOM_HEIGHT-1;i>0;i--) {
