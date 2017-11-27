@@ -4,7 +4,7 @@
 
 Cover art by Sirelion!
 
-You can buy a physical copy of the game via: http://www.matranet.net/boutique/msx/card/xspelunker/xspelunker.php
+You can buy a physical copy of the game via (Thanks to STAR from matra.net!): http://www.matranet.net/boutique/msx/card/xspelunker/xspelunker.php
 
 Download latest compiled ROMs (v1.4.3) from: https://github.com/santiontanon/xspelunker/releases/tag/1.4.3
 
