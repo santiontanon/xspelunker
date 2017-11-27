@@ -1,5 +1,11 @@
 ## XSpelunker (MSX) by Santiago Ontañón Villar
 
+<img src="https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/xspelunker-cover.jpg?raw=true" alt="cover" width="400"/> 
+
+Cover art by Sirelion!
+
+You can buy a physical copy of the game via: http://www.matranet.net/boutique/msx/card/xspelunker/xspelunker.php
+
 Download latest compiled ROMs (v1.4.3) from: https://github.com/santiontanon/xspelunker/releases/tag/1.4.3
 
 You will need an MSX emulator to play the game on a PC, for example OpenMSX: http://openmsx.org
