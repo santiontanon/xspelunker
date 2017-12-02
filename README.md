@@ -111,7 +111,7 @@ Some notes and useful links I used when coding XSpelunker
 * To measure code execution time I used: http://msx.jannone.org/bit/
 * Math routines: http://z80-heaven.wikidot.com/math
 * PSG (sound) registers: http://www.angelfire.com/art2/unicorndreams/msx/RR-PSG.html
-* Z80 tutotial: http://sgate.emt.bme.hu/patai/publications/z80guide/part1.html
+* Z80 tutorial: http://sgate.emt.bme.hu/patai/publications/z80guide/part1.html
 * Z80 user manual: http://www.zilog.com/appnotes_download.php?FromPage=DirectLink&dn=UM0080&ft=User%20Manual&f=YUhSMGNEb3ZMM2QzZHk1NmFXeHZaeTVqYjIwdlpHOWpjeTk2T0RBdlZVMHdNRGd3TG5Ca1pnPT0=
 * MSX system variables: http://map.grauw.nl/resources/msxsystemvars.php
 * MSX bios calls: 
