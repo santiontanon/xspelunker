@@ -1,5 +1,7 @@
 ## XSpelunker (MSX) by Santiago Ontañón Villar
 
+#XSpelunker won the MXC Classic MSXDev 2017 competition!!! https://www.msxdev.org/2017/12/01/msxdev17-is-over-time-to-meet-the-winners/
+
 <img src="https://raw.githubusercontent.com/santiontanon/xspelunker/master/data/xspelunker-cover.jpg?raw=true" alt="cover" width="400"/> 
 
 Cover art by Sirelion!
