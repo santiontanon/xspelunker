@@ -12,7 +12,7 @@ Download latest compiled ROMs (v1.4.3) from: https://github.com/santiontanon/xsp
 
 You will need an MSX emulator to play the game on a PC, for example OpenMSX: http://openmsx.org
 
-Or you can play directly on your browser thanks to Arnaud De Klerk (TFH)!: http://www.file-hunter.com/MSX/XSpelunker.html
+Or *you can play directly on your browser* thanks to Arnaud De Klerk (TFH)!: http://www.file-hunter.com/MSX/XSpelunker.html
 
 ## Introduction
 
