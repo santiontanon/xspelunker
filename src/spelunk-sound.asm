@@ -268,8 +268,8 @@ MUSIC_INT_PLAY_INSTRUMENT_CH1_PIANO:
     jp MUSIC_INT_LOOP
 
 MUSIC_INT_PLAY_INSTRUMENT_CH1_SW:
-    ld e,8
-    ld a,SquareWave_instrument_volume
+    ld a,8
+    ld e,SquareWave_instrument_volume
     call WRTPSG 
     jp MUSIC_INT_LOOP
 
